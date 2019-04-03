@@ -8,7 +8,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 
-class Member extends Controller
+class Member extends Admin
 {
     public function memberList()
     {
@@ -29,10 +29,12 @@ class Member extends Controller
     {
         return $this->fetch();
     }
+
     public function memberShow()
     {
         return $this->fetch();
     }
+
     public function changePassword()
     {
         return $this->fetch();
