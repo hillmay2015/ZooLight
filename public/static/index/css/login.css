@@ -73,6 +73,7 @@
     margin-top: 49px;
     width: 623px;
     height: 337px;
+    background: url("../image/login-bg.png") no-repeat;
 }
 .wrap .login-area{
     float: right;
