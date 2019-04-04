@@ -8,13 +8,12 @@ namespace app\admin\model;
 
 use think\Model;
 
-class Admin extends Model
+class Categroy extends Model
 {
     public function getlist($where = [], $field = "*", $order = "", $paginate = true, $limit = '', $param = [])
     {
         $query = $this->where($where)->field($field)->order($order);
         $page = '';
-        $pageParam = [];
         if ($paginate) {
             //分页查询
             $limit = $limit ? $limit : 15;
@@ -22,16 +21,10 @@ class Admin extends Model
             $page = $result->render();
             $data = $result->toArray();
             $data = $data['data'];
-            $pageParam = [ //一些分页参数
-                'total' => $result->total(),
-                'listRows' => $result->listRows(),
-                'currentPage' => $result->currentPage(),
-                'lastPage' => $result->lastPage()
-            ];
         } else {
             $result = $query->limit($limit)->select();
-            $data = collection($result)->toArray();
+            $data = $result->toArray();
         }
-        return ['data' => $data, 'page' => $page, 'page_param' => $pageParam];
+        return ['data' => $data, 'page' => $page];
     }
 }
