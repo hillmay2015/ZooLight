@@ -8,12 +8,12 @@ class Category extends Admin
         parent::__construct();
     }
 
-    public function index()
+    public function cateList()
     {
         return $this->fetch();
     }
 
-    public function add()
+    public function cateAdd()
     {
         return $this->fetch();
     }
