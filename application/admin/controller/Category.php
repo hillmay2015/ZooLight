@@ -3,10 +3,12 @@ namespace app\admin\controller;
 
 use app\admin\model\Categroy as CategoryModel;
 use think\Db;
+use app\common\traits\CategoryTraits;
 
 class Category extends Admin
 {
     protected $model;
+    use CategoryTraits;
 
     public function __construct()
     {
@@ -27,13 +29,7 @@ class Category extends Admin
 
     public function cateAdd()
     {
-        $res = $this->model->getlist('', "*,concat(path,',',pid) as paths", 'paths', false);
-        $data = $res['data'];
-        foreach ($data as $k => $v) {
-            $data[$k]['id'] = $v['id'];
-            $data[$k]['name'] = str_repeat('|---', $v['level']) . $v['name'];
-        }
-
+        $data = $this->cateAll();
         $this->assign('data', $data);
         return $this->fetch();
     }

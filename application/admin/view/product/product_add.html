@@ -18,12 +18,10 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="" class="select">
-					<option value="0">一级分类</option>
-					<option value="1">一级分类</option>
-					<option value="11">├二级分类</option>
-					<option value="12">├二级分类</option>
-					<option value="13">├二级分类</option>
+				<select name="id" class="select">
+				{foreach $data as $vo}
+                    <option value="{$vo.id}">{$vo.level}级分类{$vo.name}</option>
+                  {/foreach}
 				</select>
 				</span> </div>
         </div>
