@@ -7,18 +7,18 @@
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
-                    <input  name="admin_name" type="text" placeholder="账户" class="input-text size-L">
+                    <input  name="admin_name" type="text" placeholder="账户" id="admin_nmae"class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                 <div class="formControls col-xs-8">
-                    <input name="password" type="password" placeholder="密码" class="input-text size-L">
+                    <input name="password" type="password" placeholder="密码"  id="password" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
-                    <input class="input-text size-L" name="captcha" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
+                    <input class="input-text size-L" name="captcha" id="captcha" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
                     <?php $verify=url('verify');?>
                    <img src="{:url('login/verify')}" alt="captcha"  title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
                 </div>
@@ -45,5 +45,25 @@
         $('input[type="admin_name"]').val('');
         $('input[type="password"]').val('');
         $('input[type="captcha"]').val('');
-    })
+    });
+//    $('input[type="submit"]').click(function () {
+//        $.ajax({
+//            url: '/admin/login/loginPost',
+//            type: 'post',
+//            dataType: 'json',
+//            data: {
+//                admin_name: $("#admin_name").val(),
+//                password: $('#password').val(),
+//                captcha: $("#captcha").val()
+//            },
+//            success: function (result) {
+//                if (result.code) {
+//                    layer.msg(result.msg);
+//                    window.location.href='/admin/index/index';
+//                }else{
+//                    layer.msg(result.msg);
+//                }
+//            }
+//        });
+//    })
 </script>
