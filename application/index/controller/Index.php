@@ -8,14 +8,9 @@ class Index extends Controller
 {
     public function index()
     {
-        $type1=$this->getCategory();
+        $type1 = $this->getCategory();
         $this->assign('type', $type1);
         return $this->fetch();
-    }
-
-    public function hello($name = 'ThinkPHP5')
-    {
-        return 'hello,' . $name;
     }
 
     /**
@@ -33,7 +28,6 @@ class Index extends Controller
             $type2 = $model->where(array('pid' => $v['id']))->field('id,pid,name')->select();//获取二级分类
             $type2 = json_decode(json_encode($type2), true);
             foreach ($type2 as $key => $val) {
-
                 array_push($type1[$k]['child'], $val);//合并一二级分类
                 $type1[$k]['child'][$key]['child2'] = array();//组装三级分类的数组
                 $type3 = $model->where(array('pid' => $val['id']))->field('id,pid,name')->select();//获取三级分类
