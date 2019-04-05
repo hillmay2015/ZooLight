@@ -5,319 +5,33 @@
             <li class="nav-item">
                 <span class="item">全部分类</span>
                 <div class="left-menu">
+                    {foreach $type as $data}
                     <div class="level-item">
                         <div class="first-level">
                             <dl>
-                                <dt class="title"><a href="" target="_top">美食</a></dt>
-                                <dd><a href="" target="_top" class="">精选品牌</a></dd>
-                                <dd><a href="" target="_top" class="">小吃快餐</a></dd>
+                                <dt class="title"><a href="" target="_top">{$data.name}</a></dt>
+                                {foreach $data['child'] as $data2}
+                                <dd><a href="" target="_top" class="">{$data2.name}</a></dd>
+                                {/foreach}
                             </dl>
                         </div>
                         <div class="second-level">
                             <div class="section">
-                                <div class="section-item clearfix no-top-border">
-                                    <h3>热门分类</h3>
+                                {foreach $data['child'] as $data2}
+                                <div class="section-item clearfix">
+                                    <h3>{$data2.name}</h3>
                                     <ul>
                                         <li><a class="hot">精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
+                                        {foreach $data2['child2'] as $data3}
+                                        <li><a>{$data3.name}</a></li>
+                                        {/foreach}
                                     </ul>
                                 </div>
-                                <div class="section-item clearfix">
-                                    <h3>热门分类</h3>
-                                    <ul>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-
+                                {/foreach}
                             </div>
                         </div>
                     </div>
-                    <div class="level-item">
-                        <div class="first-level">
-                            <dl>
-                                <dt class="title"><a href="" target="_top">电影</a></dt>
-                                <dd><a href="" target="_top" class="">订座</a></dd>
-                                <dd><a href="" target="_top" class="">电影票团购</a></dd>
-                            </dl>
-                        </div>
-                        <div class="second-level">
-                            <div class="section">
-                                <div class="section-item clearfix no-top-border">
-                                    <h3>热门分类</h3>
-                                    <ul>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-                                <div class="section-item clearfix">
-                                    <h3>热门分类</h3>
-                                    <ul>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="level-item">
-                        <div class="first-level">
-                            <dl>
-                                <dt class="title"><a href="" target="_top">休闲娱乐</a></dt>
-                                <dd><a href="" target="_top" class="">ktv</a></dd>
-                                <dd><a href="" target="_top" class="">温泉洗浴</a></dd>
-                            </dl>
-                        </div>
-                        <div class="second-level">
-                            <div class="section">
-                                <div class="section-item clearfix no-top-border">
-                                    <ul>
-                                        <li><a class="hot">精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-                                <div class="section-item clearfix">
-                                    <ul>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="level-item">
-                        <div class="first-level">
-                            <dl>
-                                <dt class="title"><a href="" target="_top">电影</a></dt>
-                                <dd><a href="" target="_top" class="">订座</a></dd>
-                                <dd><a href="" target="_top" class="">电影票团购</a></dd>
-                            </dl>
-                        </div>
-                        <div class="second-level">
-                            <div class="section">
-                                <div class="section-item clearfix no-top-border">
-                                    <h3>热门分类</h3>
-                                    <ul>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-                                <div class="section-item clearfix">
-                                    <h3>热门分类</h3>
-                                    <ul>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="level-item">
-                        <div class="first-level">
-                            <dl>
-                                <dt class="title"><a href="" target="_top">电影</a></dt>
-                                <dd><a href="" target="_top" class="">订座</a></dd>
-                                <dd><a href="" target="_top" class="">电影票团购</a></dd>
-                            </dl>
-                        </div>
-                        <div class="second-level">
-                            <div class="section">
-                                <div class="section-item clearfix no-top-border">
-                                    <h3>热门分类</h3>
-                                    <ul>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-                                <div class="section-item clearfix">
-                                    <h3>热门分类</h3>
-                                    <ul>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                        <li><a>精选品牌</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+                    {/foreach}
             <li class="nav-item"><a class="item first active">首页</a></li>
             <li class="nav-item"><a class="item">团购</a></li>
             <li class="nav-item"><a class="item">商户</a></li>
@@ -332,8 +46,12 @@
                 <a href="#" class="slide-prev"><i class="slide-arrow-left"></i></a>
                 <a href="#" class="slide-next"><i class="slide-arrow-right"></i></a>
                 <ul class="slideshow">
-                    <li><a href="" class="item-large"><img class="ad-pic" src="{$Think.IMAGE}a1ec08fa513d2697b85e74c35dfbb2fb4216d89b.jpg" /></a></li>
-                    <li><a href="" class="item-large"><img class="ad-pic" src="{$Think.IMAGE}63d0f703918fa0ec7c51e2912e9759ee3c6ddb9c.jpg" /></a></li>
+                    <li><a href="" class="item-large"><img class="ad-pic"
+                                                           src="{$Think.IMAGE}a1ec08fa513d2697b85e74c35dfbb2fb4216d89b.jpg"/></a>
+                    </li>
+                    <li><a href="" class="item-large"><img class="ad-pic"
+                                                           src="{$Think.IMAGE}63d0f703918fa0ec7c51e2912e9759ee3c6ddb9c.jpg"/></a>
+                    </li>
                 </ul>
             </div>
             <div class="list-container">
@@ -344,7 +62,7 @@
     <div class="right-sidebar">
         <div class="right-ad">
             <ul class="slidepic">
-                <li><a><img src="{$Think.IMAGE}72f082025aafa40f9205eb43a364034f79f01968.jpg" /></a></li>
+                <li><a><img src="{$Think.IMAGE}72f082025aafa40f9205eb43a364034f79f01968.jpg"/></a></li>
             </ul>
         </div>
 
@@ -361,7 +79,8 @@
                             <li><a href="//bj.nuomi.com/380" target="_blank">小吃快餐</a></li>
                             <li><a href="//bj.nuomi.com/392" target="_blank">自助餐</a></li>
                             <li><a href="//bj.nuomi.com/327" target="_blank">其他美食</a></li>
-                            <li><a class="no-right-border no-right-padding" target="_blank">全部<span class="all-cate-arrow"></span></a></li>
+                            <li><a class="no-right-border no-right-padding" target="_blank">全部<span
+                                    class="all-cate-arrow"></span></a></li>
                         </ul>
                     </div>
                     <ul class="itemlist eight-row-height">
@@ -379,7 +98,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -415,7 +134,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -453,7 +172,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -491,7 +210,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -529,7 +248,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -567,7 +286,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -603,7 +322,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -641,7 +360,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -679,7 +398,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -717,7 +436,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -751,7 +470,8 @@
                             <li><a href="//bj.nuomi.com/380" target="_blank">小吃快餐</a></li>
                             <li><a href="//bj.nuomi.com/392" target="_blank">自助餐</a></li>
                             <li><a href="//bj.nuomi.com/327" target="_blank">其他美食</a></li>
-                            <li><a class="no-right-border no-right-padding" target="_blank">全部<span class="all-cate-arrow"></span></a></li>
+                            <li><a class="no-right-border no-right-padding" target="_blank">全部<span
+                                    class="all-cate-arrow"></span></a></li>
                         </ul>
                     </div>
                     <ul class="itemlist eight-row-height">
@@ -769,7 +489,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -805,7 +525,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -843,7 +563,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -881,7 +601,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -919,7 +639,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -957,7 +677,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -993,7 +713,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -1031,7 +751,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -1069,7 +789,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -1107,7 +827,7 @@
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg" />
+                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
                                     </div>
                                 </div>
                             </a>
@@ -1149,35 +869,35 @@
     $("#slide-holder ul").css({width: width + "px"});
 
     //轮播图自动轮播
-    var time = setInterval(moveleft,5000);
+    var time = setInterval(moveleft, 5000);
 
     //轮播图左移
-    function moveleft(){
-        $("#slide-holder ul").animate({marginLeft: "-737px"},600, function () {
+    function moveleft() {
+        $("#slide-holder ul").animate({marginLeft: "-737px"}, 600, function () {
             $("#slide-holder ul li").eq(0).appendTo($("#slide-holder ul"));
-            $("#slide-holder ul").css("marginLeft","0px");
+            $("#slide-holder ul").css("marginLeft", "0px");
         });
     }
 
     //轮播图右移
-    function moveright(){
+    function moveright() {
         $("#slide-holder ul").css({marginLeft: "-737px"});
-        $("#slide-holder ul li").eq(($("#slide-holder ul li").length)-1).prependTo($("#slide-holder ul"));
-        $("#slide-holder ul").animate({marginLeft: "0px"},600);
+        $("#slide-holder ul li").eq(($("#slide-holder ul li").length) - 1).prependTo($("#slide-holder ul"));
+        $("#slide-holder ul").animate({marginLeft: "0px"}, 600);
     }
 
     //右滑箭头点击事件
     $(".slide-next").click(function () {
         clearInterval(time);
         moveright();
-        time = setInterval(moveleft,5000);
+        time = setInterval(moveleft, 5000);
     });
 
     //左滑箭头点击事件
     $(".slide-prev").click(function () {
         clearInterval(time);
         moveleft();
-        time = setInterval(moveleft,5000);
+        time = setInterval(moveleft, 5000);
     });
 </script>
 </body>
