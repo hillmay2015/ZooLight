@@ -27,4 +27,11 @@ class Categroy extends Model
         }
         return ['data' => $data, 'page' => $page];
     }
+
+    public function findOneList($where, $field = '*')
+    {
+        $result = $this->where($where)->find();
+        return $result;
+    }
+
 }

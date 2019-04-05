@@ -14,6 +14,9 @@ class Category extends Admin
         $this->model = new CategoryModel();
     }
 
+    /**
+     * 分类列表展示
+     */
     public function cateList()
     {
 
@@ -35,30 +38,41 @@ class Category extends Admin
         return $this->fetch();
     }
 
+    /**
+     * 添加分类
+     */
     public function CateAddDo()
     {
-        $data['name'] = $this->request->param('name','');
-        $data['pid'] = $this->request->param('pid',0,'intval');
-
+        $data['name'] = $this->request->param('name', '');
+        $data['pid'] = $this->request->param('pid', 0, 'intval');
 
         if (!empty($data['name'])) {
-            if ($data['pid'] == 0) {//添加顶级分类
+            if ($data['pid'] == 0) {
+                //添加顶级分类
                 $data['level'] = 1;
-                $re = Db::name('category')->insertGetId($data);
+                $re = $this->model->insertGetId($data);
                 $path['path'] = '0' . ',' . $re;
-                Db::name('category')->where('id', $re)->update($path);
-                $this->success('顶级添加分类成功');
+                $update = $this->model->update($path, ['id' => $re]);
+                if ($update && $re) {
+                    $this->success('顶级分类添加成功');
+                } else {
+                    $this->error('顶级分类添加失败');
+                }
             }
             //添加子分类
-            $res = Db::name('category')->field('path')->find($data['pid']);
+            $condition['id'] = $data['pid'];
+            $res = $this->model->findOneList($condition, 'path');
             $data['path'] = $res['path'];
             $data['level'] = substr_count($data['path'], ',');
-            $re = Db::name('category')->insertGetId($data);
+            $re = $this->model->insertGetId($data);
             $path['path'] = $data['path'] . ',' . $re;
             $path['level'] = substr_count($path['path'], ',');
-            Db::name('category')->where('id', $re)->update($path);
-            $this->success('添加分类成功');
-
+            $update = $this->model->update($path, ['id' => $re]);
+            if ($update && $re) {
+                $this->success('子分类添加成功');
+            } else {
+                $this->error('子分类添加失败');
+            }
         } else {
             $this->error('请填写分类名称');
         }
