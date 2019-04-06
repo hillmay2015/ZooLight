@@ -16,4 +16,11 @@ class Login extends Controller
     {
         return $this->fetch();
     }
+
+    /**
+     * 登录
+     */
+    public function doLogin(){
+
+    }
 }
