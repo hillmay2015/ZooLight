@@ -15,4 +15,26 @@ class Buy extends Controller
     {
         return $this->fetch();
     }
+
+    /**
+     * 购买第一步
+     */
+    public function buy(){
+
+    }
+
+    /**
+     * 支付页面
+     */
+    public function pay(){
+
+    }
+
+    /**
+     * 支付提交
+     */
+    public function doPay(){
+
+    }
+
 }
