@@ -10,15 +10,26 @@ class Product extends Admin
     use CategoryTraits;
 
     protected $rule = [
-        'admin_name' => 'require',
-        'password' => 'require',
-        'captcha' => 'require',
+        'name' => 'require',
+        'sub_name' => 'require',
+        'price' => 'require',
+        'market_price' => 'require',
+        'start_time' => 'require',
+        'end_time' => 'require',
+        'editorValue'=>'require',
+        'file'=>'require',
     ];
 
     protected $message = [
-        'admin_name.require' => '请输入登录账号',
-        'password.require' => '请输入登录密码',
-        'captcha.require' => '验证码不能为空',
+        'name.require' => '请输入产品标题',
+        'subname.require' => '请输入标题描述',
+        'price.require' => '请输入展示价格',
+        'market_price.require' => '请输入展示价格',
+        'start_time.require' => '请输入展示价格',
+        'end_time.require' => '请输入展示价格',
+        'editorValue.require' => '请输入商家介绍',
+        'file.require' => '请传入图片',
+
     ];
 
     public function __construct()
