@@ -41,4 +41,5 @@ class Index extends Controller
         return $type1;
 
     }
+
 }
