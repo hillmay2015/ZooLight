@@ -1,37 +1,7 @@
 {include file="layout/layout" /}
 <div class="nav-bar-header">
     <div class="nav-inner">
-        <ul class="nav-list">
-            <li class="nav-item">
-                <span class="item">全部分类</span>
-                <div class="left-menu">
-                    {foreach $type as $data}
-                    <div class="level-item">
-                        <div class="first-level">
-                            <dl>
-                                <dt class="title"><a href="" target="_top">{$data.name}</a></dt>
-                                {foreach $data['child'] as $data2}
-                                <dd><a href="" target="_top" class="">{$data2.name}</a></dd>
-                                {/foreach}
-                            </dl>
-                        </div>
-                        <div class="second-level">
-                            <div class="section">
-                                {foreach $data['child'] as $data2}
-                                <div class="section-item clearfix">
-                                    <h3>{$data2.name}</h3>
-                                    <ul>
-                                        <li><a class="hot">精选品牌</a></li>
-                                        {foreach $data2['child2'] as $data3}
-                                        <li><a>{$data3.name}</a></li>
-                                        {/foreach}
-                                    </ul>
-                                </div>
-                                {/foreach}
-                            </div>
-                        </div>
-                    </div>
-                    {/foreach}
+        {include file="layout/category" /}
             <li class="nav-item"><a class="item first active">首页</a></li>
             <li class="nav-item"><a class="item">团购</a></li>
             <li class="nav-item"><a class="item">商户</a></li>
