@@ -16,4 +16,11 @@ class Register extends Controller
     {
         return $this->fetch();
     }
+
+    /**
+     * 注册数据提交
+     */
+    public function doRegister(){
+
+    }
 }
