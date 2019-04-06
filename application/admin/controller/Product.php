@@ -56,9 +56,10 @@ class Product extends Admin
     {
         $data = $this->request->param();
         $this->check($data);
-        echo '<pre>';
-        print_r($data);
-        exit();
+//        echo '<pre>';
+//        print_r($data);
+//        exit();
+//
         $res=$this->model->insert($data);
         if($res){
             $this->success('添加产品成功');
