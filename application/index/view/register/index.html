@@ -26,10 +26,10 @@
     </div>
 
     <div class="content">
-        <form>
+        <form action="{:url('doRegister')}" method="post">
             <p class="pass-form-item">
                 <label class="pass-label">用户名</label>
-                <input type="text" name="userName" class="pass-text-input" placeholder="请设置用户名">
+                <input type="text" name="user" class="pass-text-input" placeholder="请设置用户名">
             </p>
             <p class="pass-form-item">
                 <label class="pass-label">邮箱号</label>
@@ -49,7 +49,6 @@
                 <input type="text" name="verifyCode" class="pass-text-input " placeholder="请输入验证码">
                 <?php $verify=url('verify');?>
                 <img src="{:url('register/verify')}" alt="captcha"  title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
-
             </p>
 
             <p class="pass-form-item">

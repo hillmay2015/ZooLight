@@ -10,13 +10,27 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\captcha\Captcha;
+use think\validate;
 
 class Register extends Controller
 {
+    protected $rule = [
+        'admin_name' => 'require',
+        'password' => 'require',
+        'captcha' => 'require',
+    ];
+
+    protected $message = [
+        'admin_name.require' => '请输入登录账号',
+        'password.require' => '请输入登录密码',
+        'captcha.require' => '验证码不能为空',
+    ];
+
     public function index()
     {
         return $this->fetch();
     }
+
     /**
      * 生成验证码
      */
@@ -31,7 +45,27 @@ class Register extends Controller
     /**
      * 注册数据提交
      */
-    public function doRegister(){
+    public function doRegister()
+    {
+        $data = $this->request->param();
+        $this->check($data);
 
+    }
+
+    /**
+     * 验证数据
+     */
+    protected function check($data)
+    {
+        $validate = new Validate($this->rule, $this->message);
+        $result = $validate->check($data);
+        if (!$result) {
+            $this->error($validate->getError());
+        }
+        $captcha = new Captcha();
+        if (!$captcha->check($data['captcha'])) {
+            // 验证失败
+            $this->error('验证码错误');
+        }
     }
 }
