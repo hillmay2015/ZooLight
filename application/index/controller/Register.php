@@ -12,6 +12,7 @@ use think\App;
 use think\Controller;
 use think\captcha\Captcha;
 use think\validate;
+use app\index\model\User;
 
 
 class Register extends Controller
