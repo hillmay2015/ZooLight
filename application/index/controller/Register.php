@@ -9,6 +9,7 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\captcha\Captcha;
 
 class Register extends Controller
 {
@@ -16,6 +17,16 @@ class Register extends Controller
     {
         return $this->fetch();
     }
+    /**
+     * 生成验证码
+     */
+    public function verify()
+    {
+        $config = ['length' => 4, 'imageH' => 50];//验证码位数为4位,高度为50
+        $captcha = new Captcha($config);
+        return $captcha->entry();
+    }
+
 
     /**
      * 注册数据提交
