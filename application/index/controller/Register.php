@@ -8,9 +8,11 @@
  */
 namespace app\index\controller;
 
+use think\App;
 use think\Controller;
 use think\captcha\Captcha;
 use think\validate;
+
 
 class Register extends Controller
 {
@@ -25,6 +27,13 @@ class Register extends Controller
         'password.require' => '请输入登录密码',
         'captcha.require' => '验证码不能为空',
     ];
+    protected $model;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->model = new User();
+    }
 
     public function index()
     {
@@ -49,6 +58,8 @@ class Register extends Controller
     {
         $data = $this->request->param();
         $this->check($data);
+        array_pop($data);//删除最后一个元素
+        $res = $this->model->save($data);
 
     }
 
