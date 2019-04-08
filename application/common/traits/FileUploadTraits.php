@@ -10,6 +10,6 @@ namespace app\common\traits;
 
 use Think\db;
 
-trait DbTraits
+trait FileUploadTraits
 {
 }
