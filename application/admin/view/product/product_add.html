@@ -42,14 +42,14 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">销售开始时间：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" id="datemin" name="start_time" class="input-text Wdate"
+                <input id="start_time" type="text" onfocus="WdatePicker({minDate:'#F'+'{'+'$dp.$D(\'start_time\')'+'}', dateFmt: 'yyyy-MM-dd HH:mm:ss' })" id="datemin" name="start_time" class="input-text Wdate"
                        style="width:180px;">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">销售结束时间：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" id="datemax" name="end_time" class="input-text Wdate"
+                <input id="end_time" type="text" onfocus="WdatePicker({minDate:'#F'+'{'+'$dp.$D(\'end_time\')'+'}',dateFmt: 'yyyy-MM-dd HH:mm:ss' })" id="datemax" name="end_time" class="input-text Wdate"
                        style="width:180px;">
             </div>
         </div>
@@ -228,6 +228,7 @@
         });
 
     });
+
 
     (function ($) {
         // 当domReady的时候开始初始化
@@ -445,6 +446,7 @@
             function addFile(file) {
                 var $li = $('<li id="' + file.id + '">' +
                         '<p class="title">' + file.name + '</p>' +
+                        '<input type="hidden" value="'+file.name+'" name="image">' +
                         '<p class="imgWrap"></p>' +
                         '<p class="progress"><span></span></p>' +
                         '</li>'),

@@ -16,8 +16,8 @@ class Product extends Admin
         'market_price' => 'require',
         'start_time' => 'require',
         'end_time' => 'require',
-        'editorValue'=>'require',
-        'file'=>'require',
+        'editorValue' => 'require',
+        'image' => 'require',
     ];
 
     protected $message = [
@@ -28,7 +28,7 @@ class Product extends Admin
         'start_time.require' => '请输入开始时间',
         'end_time.require' => '请输入结束时间',
         'editorValue.require' => '请输入商家介绍',
-        'file.require' => '请传入图片',
+        'image.require' => '请传入图片',
 
     ];
 
@@ -56,14 +56,15 @@ class Product extends Admin
     {
         $data = $this->request->param();
         $this->check($data);
-//        echo '<pre>';
-//        print_r($data);
-//        exit();
-//
-        $res=$this->model->insert($data);
-        if($res){
+        $data['seller_info'] = $data['editorValue'];
+        unset($data['file']);//删除不需要的元素
+        unset($data['editorValue']);
+
+
+        $res = $this->model->insert($data);
+        if ($res) {
             $this->success('添加产品成功');
-        }else{
+        } else {
             $this->error('添加产品失败');
         }
 
