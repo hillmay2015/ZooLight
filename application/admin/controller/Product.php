@@ -23,10 +23,10 @@ class Product extends Admin
     protected $message = [
         'name.require' => '请输入产品标题',
         'subname.require' => '请输入标题描述',
+        'market_price.require' => '请输入市场价格',
         'price.require' => '请输入展示价格',
-        'market_price.require' => '请输入展示价格',
-        'start_time.require' => '请输入展示价格',
-        'end_time.require' => '请输入展示价格',
+        'start_time.require' => '请输入开始时间',
+        'end_time.require' => '请输入结束时间',
         'editorValue.require' => '请输入商家介绍',
         'file.require' => '请传入图片',
 
