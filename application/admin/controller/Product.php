@@ -4,10 +4,12 @@ namespace app\admin\controller;
 use app\common\traits\CategoryTraits;
 use think\validate;
 use app\admin\model\Product as ProductModel;
+use app\common\traits\ProductTraits;
 
 class Product extends Admin
 {
     use CategoryTraits;
+    use ProductTraits;
 
     protected $rule = [
         'name' => 'require',
@@ -41,6 +43,8 @@ class Product extends Admin
 
     public function productList()
     {
+        $product = $this->getList();
+        $this->assign('product', $product);
         return $this->fetch();
     }
 
