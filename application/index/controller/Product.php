@@ -33,7 +33,7 @@ class Product extends Controller
         $id = $this->request->param('id', 0, 'intval');
         $where['id'] = $id;
         $filed = 'id,name,sub_name,image,discount_price,price,start_time,end_time,seller_info,tips';
-        $result = $this->model->findOneList($id, $filed);
+        $result = $this->model->findOneList($where, $filed);
         $info=json_decode(json_encode($result),true);
         if (!empty($info)) {
             $this->assign('info', $info);
