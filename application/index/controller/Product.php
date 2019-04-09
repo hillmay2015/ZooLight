@@ -40,7 +40,6 @@ class Product extends Controller
         } else {
             $this->assign('info', []);
         }
-
         return $this->fetch();
     }
 }
