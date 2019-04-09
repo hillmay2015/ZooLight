@@ -66,11 +66,11 @@
                                         <div class="range-bg"></div>
                                         <div class="range-inner">
                                             <span class="white-locate"></span>
-                                            安贞 六里桥 丽泽桥 安定门 劲松 昌平镇 航天桥 通州区 通州北苑
+                                           {$v.address}
                                         </div>
                                     </div>
                                     <div class="borderbox">
-                                        <img src="{$Think.IMAGE}b219ebc4b74543a9c6c87b8e18178a82b80114a4.jpg"/>
+                                        <img src="{$Think.ADMIN_IMAGE}{$v.image}"/>
                                     </div>
                                 </div>
                             </a>
@@ -82,7 +82,9 @@
                                     <p>{$v.sub_name}</p>
                                 </a>
                                 <div class="add-info">
-                                    <span class="promo">立减3.6元</span>
+                                    {if $v.discount_price >0}
+                                    <span class="promo">立减{$v.discount_price}元</span>
+                                    {/if}
                                 </div>
                                 <div class="pinfo">
                                     <span class="price"><span class="moneyico">¥</span>{$v.price}</span>
