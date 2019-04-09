@@ -22,6 +22,8 @@ class Product extends Admin
         'end_time' => 'require',
         'editorValue' => 'require',
         'image' => 'require',
+        'address' => 'require',
+
     ];
 
     protected $message = [
@@ -33,6 +35,7 @@ class Product extends Admin
         'end_time.require' => '请输入结束时间',
         'editorValue.require' => '请输入商家介绍',
         'image.require' => '请传入图片',
+        'address' => '请输入门店地址',
 
     ];
 
