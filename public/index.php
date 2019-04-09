@@ -16,6 +16,7 @@ namespace think;
 define('SITE_HOST', $_SERVER['HTTP_HOST']);
 //带HTTP的域名
 define('HTTP_SITE_NOPATH_HOST', "http://" . SITE_HOST);
+define('UPLOAD_IMAGE', '/static/upload');
 
 // 加载基础文件
 require __DIR__ . '/../thinkphp/base.php';
@@ -24,9 +25,9 @@ require __DIR__ . '/../thinkphp/base.php';
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
 //定义配置文件目录
-define('CONF_PATH',__DIR__.'/../config/');
+define('CONF_PATH', __DIR__ . '/../config/');
 
-define('BASE_PATH',__DIR__);
+define('BASE_PATH', __DIR__);
 
 // 执行应用并响应
 Container::get('app')->run()->send();
