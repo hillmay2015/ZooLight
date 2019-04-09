@@ -12,7 +12,9 @@ use Think\db;
 trait DbTraits
 {
 
-    public function getOneList(){
-        
+    public function findOneList($where, $field = '*')
+    {
+        $result = $this->where($where)->find();
+        return $result;
     }
 }

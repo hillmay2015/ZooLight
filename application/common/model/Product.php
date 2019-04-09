@@ -7,9 +7,12 @@
 namespace app\common\model;
 
 use think\Model;
+use app\common\traits\DbTraits;
 
 Class Product extends Model
 {
+    use DbTraits;
+
     public function getlist($where = [], $field = "*", $order = "", $paginate = true, $limit = '', $param = [])
     {
         $query = $this->where($where)->field($field)->order($order);

@@ -16,16 +16,16 @@
             <ul class="crumb-list">
                 <li class="crumb"><a>团购</a><span class="ico-gt">&gt;</span></li>
                 <li class="crumb"><a>美食</a><span class="ico-gt">&gt;</span></li>
-                <li class="crumb crumb-last"><a>好伦哥团购</a></li>
+                <li class="crumb crumb-last"><a>中国菜</a></li>
             </ul>
         </div>
     </div>
     <div class="static-hook-real static-hook-id-5"></div>
     <div class="p-item-info">
         <div class="w-item-info">
-            <h2>好伦哥</h2>
+            <h2>{$info.name}</h2>
             <div class="item-title">
-                <span class="text-main">仅售55元，价值59元精选自助餐1位！免费WiFi！</span>
+                <span class="text-main">{$info.sub_name}<</span>
             </div>
             <div class="ii-images static-hook-real static-hook-id-6">
                 <div class="w-item-images">
@@ -33,11 +33,11 @@
                         <div class="item-status ">
                             <span class="ico-status ico-jingxuan"></span>
                         </div>
-                        <img src="{$Think.IMAGE}faf2b2119313b07eadf19d880bd7912396dd8ce6.jpg" class="item-img-large" />
+                        <img src="{$Think.ADMIN_IMAGE}{$info.image}" class="item-img-large" />
                     </div>
                     <ul class="images-list clearfix">
                         <li class="images images-last">
-                            <img src="{$Think.IMAGE}faf2b2119313b07eadf19d880bd7912396dd8ce6.jpg" />
+                            <img src="{$Think.ADMIN_IMAGE}{$info.image}"/>
                         </li>
                     </ul>
                     <div class="erweima-share-collect">
@@ -58,11 +58,11 @@
                         <div class="price-area has-promotion-icon">
                             <div class="pic-price-area">
                                 <span class="unit">¥</span>
-                                <span class="priceNum">53.6</span>
+                                <span class="priceNum">{$info.price}</span>
                             </div>
 
                             <div class="market-price-area">
-                                <div class="price">¥59</div>
+                                <div class="price">¥{$info.market_price}</div>
                                 <div class="name">价值</div>
                             </div>
 
@@ -94,7 +94,7 @@
                             <div class="validdate-buycount-area static-hook-real static-hook-id-11">
                                 <div class="item-countdown-row">
                                     <span class="name">有效期</span>
-                                    <span class="value">2017-01-20</span>
+                                    <span class="value">{$info.start_time}-{$info.end_time}</span>
                                 </div>
                                 <div class="item-buycount-row j-item-buycount-row">
                                     <div class="name">数&nbsp;&nbsp;&nbsp;量</div>
