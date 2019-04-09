@@ -50,7 +50,7 @@ trait FileUploadTraits
 // Settings
 // $targetDir = ini_get("upload_tmp_dir") . DIRECTORY_SEPARATOR . "plupload";
         $targetDir = 'upload_tmp';
-        $uploadDir = 'upload';
+        $uploadDir = UPLOAD_IMAGE;
 
         $cleanupTargetDir = true; // Remove old files
         $maxFileAge = 5 * 3600; // Temp file age in seconds

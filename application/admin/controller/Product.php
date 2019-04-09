@@ -5,11 +5,13 @@ use app\common\traits\CategoryTraits;
 use think\validate;
 use app\admin\model\Product as ProductModel;
 use app\common\traits\ProductTraits;
+use app\common\traits\FileUploadTraits;
 
 class Product extends Admin
 {
     use CategoryTraits;
     use ProductTraits;
+    use FileUploadTraits;
 
     protected $rule = [
         'name' => 'require',
