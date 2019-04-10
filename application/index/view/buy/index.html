@@ -19,13 +19,13 @@
         </tr>
         <tr class="j-row">
             <td class="vtop">
-                <div class="title-area" title="【好伦哥】精选自助餐1位！免费WiFi！">
+                <div class="title-area" title="{$info.name}">
                     <div class="img-wrap">
-                        <a href="" target="_blank"><img src="{$Think.IMAGE}faf2b2119313b07eadf19d880bd7912396dd8ce6.jpg" width="130" height="79"></a>
+                        <a href="" target="_blank"><img src="{$Think.ADMIN_IMAGE}{$info.image}" width="130" height="79"></a>
                     </div>
                     <div class="title-wrap">
                         <div class="title">
-                            <a href="" class="link">【好伦哥】精选自助餐1位！免费WiFi！</a>
+                            <a href="" class="link">{$info.sub_name}"</a>
                         </div>
                         <div class="attrs"></div>
                     </div>
@@ -40,15 +40,15 @@
                 </div>
                 <span class="err-wrap j-err-wrap"></span>
             </td>
-            <td class="j-cellActivity">-￥<span>1.40</span><br></td>
-            <td class="price font14">¥<span class="j-sumPrice">53.60</span></td>
+            <td class="j-cellActivity">-￥<span>{$info.discont_price}</span><br></td>
+            <td class="price font14">¥<span class="j-sumPrice">{$info.price}</span></td>
         </tr>
         </tbody>
     </table>
 
 
 
-    <div class="final-price-area">应付总额：<span class="sum">￥<span class="price">53.60</span></span></div>
+    <div class="final-price-area">应付总额：<span class="sum">￥<span class="price">{$info.price-$info.discont_price}</span></span></div>
 
     <div class="page-button-wrap">
         <a href="" class="btn btn-primary">确认</a>
