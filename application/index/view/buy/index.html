@@ -40,7 +40,7 @@
                 </div>
                 <span class="err-wrap j-err-wrap"></span>
             </td>
-            <td class="j-cellActivity">-￥<span>{$info.discont_price}</span><br></td>
+            <td class="j-cellActivity">-￥<span>{$info.discount_price|default=0}</span><br></td>
             <td class="price font14">¥<span class="j-sumPrice">{$info.price}</span></td>
         </tr>
         </tbody>
@@ -48,7 +48,7 @@
 
 
 
-    <div class="final-price-area">应付总额：<span class="sum">￥<span class="price">{$info.price-$info.discont_price}</span></span></div>
+    <div class="final-price-area">应付总额：<span class="sum">￥<span class="price">{$info.price-$info.discount_price}</span></span></div>
 
     <div class="page-button-wrap">
         <a href="" class="btn btn-primary">确认</a>
