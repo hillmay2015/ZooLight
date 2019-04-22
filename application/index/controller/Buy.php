@@ -8,32 +8,60 @@
 namespace app\index\controller;
 
 use think\Controller;
+use app\common\traits\CategoryTraits;
+use app\common\model\Product as ProductModel;
 
 class Buy extends Controller
 {
+    use CategoryTraits;
+    protected $model;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->model = new ProductModel();
+    }
+
     public function index()
     {
+        //分类
+        $type1 = $this->getCategory();
+        $this->assign('type', $type1);
+        //根据id来查相关的商品
+        $id = $this->request->param('id', 0, 'intval');
+        $where['id'] = $id;
+        $filed = 'id,name,sub_name,image,discount_price,price,start_time,end_time,seller_info,tips';
+        $result = $this->model->findOneList($where, $filed);
+        $info = json_decode(json_encode($result), true);
+        if (!empty($info)) {
+            $this->assign('info', $info);
+        } else {
+            $this->assign('info', []);
+        }
         return $this->fetch();
     }
 
     /**
      * 购买第一步
      */
-    public function buy(){
+    public function buy()
+    {
 
     }
 
     /**
      * 支付页面
      */
-    public function pay(){
+    public function pay()
+    {
 
     }
 
     /**
      * 支付提交
      */
-    public function doPay(){
+    public function doPay()
+    {
 
     }
 
