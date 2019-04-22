@@ -45,10 +45,21 @@ class Buy extends Controller
     /**
      * 购买第一步
      */
-    public function buy()
+    public function buyStepTwo()
     {
+        return $this->fetch();
 
     }
+
+    /**
+     * 购买第三步
+     */
+    public function buyStepThree()
+    {
+        return $this->fetch();
+
+    }
+
 
     /**
      * 支付页面
