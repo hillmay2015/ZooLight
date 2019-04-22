@@ -45,7 +45,7 @@ class Buy extends Controller
     /**
      * 购买第一步
      */
-    public function buyStepTwo()
+    public function stepTwo()
     {
         return $this->fetch();
 
@@ -54,7 +54,7 @@ class Buy extends Controller
     /**
      * 购买第三步
      */
-    public function buyStepThree()
+    public function stepThree()
     {
         return $this->fetch();
 
