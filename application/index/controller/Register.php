@@ -18,15 +18,17 @@ use app\index\model\User;
 class Register extends Controller
 {
     protected $rule = [
-        'admin_name' => 'require',
+        'user_name' => 'require',
+        'email' => 'require',
         'password' => 'require',
-        'captcha' => 'require',
     ];
 
     protected $message = [
-        'admin_name.require' => '请输入登录账号',
-        'password.require' => '请输入登录密码',
-        'captcha.require' => '验证码不能为空',
+        'user_name.require' => '用户名不能为空',
+        'email.require' => '邮箱不能为空',
+        'email.email' => '邮箱格式不正确',
+        'password.require' => '密码不能为空',
+
     ];
     protected $model;
 
