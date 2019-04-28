@@ -1,5 +1,5 @@
 {include file="layout/top" /}
-<link href="{$Think.ADMIN_CSS}H-ui.login.css" rel="stylesheet" type="text/css" />
+<link href="{$Think.ADMIN_CSS}H-ui.login.css" rel="stylesheet" type="text/css"/>
 <div class="header">O2O团购网</div>
 <div class="loginWraper">
     <div id="loginform" class="loginBox">
@@ -7,63 +7,61 @@
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
-                    <input  name="admin_name" type="text" placeholder="账户" id="admin_nmae"class="input-text size-L">
+                    <input name="admin_name" type="text" placeholder="账户" id="admin_nmae" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                 <div class="formControls col-xs-8">
-                    <input name="password" type="password" placeholder="密码"  id="password" class="input-text size-L">
+                    <input name="password" type="password" placeholder="密码" id="password" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
-                    <input class="input-text size-L" name="captcha" id="captcha" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
+                    <input class="input-text size-L" name="captcha" id="captcha" type="text" placeholder="验证码"
+                           onblur="if(this.value==''){this.value='验证码:'}"
+                           onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
                     <?php $verify=url('verify');?>
-                   <img src="{:url('login/verify')}" alt="captcha"  title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
+                    <img src="{:url('login/verify')}" alt="captcha" id="verify_img" title="验证码"
+                         onclick="this.src='{$verify}?d='+Math.random();"/>
                 </div>
-            <div class="row cl">
-                <div class="formControls col-xs-8 col-xs-offset-3">
-                    <label for="online">
-                        <input type="checkbox" name="online" id="online" value="">
-                        使我保持登录状态</label>
+                <div class="row cl">
+                    <div class="formControls col-xs-8 col-xs-offset-3">
+                        <label for="online">
+                            <input type="checkbox" name="online" id="online" value="">
+                            使我保持登录状态</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row cl">
-                <div class="formControls col-xs-8 col-xs-offset-3">
-                    <input  type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
-                    <input  type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+                <div class="row cl">
+                    <div class="formControls col-xs-8 col-xs-offset-3">
+                        <input type="submit" class="btn btn-success radius size-L"
+                               value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+                        <input type="reset" class="btn btn-default radius size-L"
+                               value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+                    </div>
                 </div>
-            </div>
         </form>
     </div>
 </div>
 <div class="footer">2019 ©Hillmay芝麻喵喵||蜀ICP备19009311号</div>
 {include file="layout/footer" /}
 <script>
+    //重置按钮
     $('input[type="reset"]').click(function () {
         $('input[type="admin_name"]').val('');
         $('input[type="password"]').val('');
         $('input[type="captcha"]').val('');
+        var capsrc = '{$verify}?d=';
+        $('#verify_img').attr('src', capsrc + Math.random());
     });
-//    $('input[type="submit"]').click(function () {
-//        $.ajax({
-//            url: '/admin/login/loginPost',
-//            type: 'post',
-//            dataType: 'json',
-//            data: {
-//                admin_name: $("#admin_name").val(),
-//                password: $('#password').val(),
-//                captcha: $("#captcha").val()
-//            },
-//            success: function (result) {
-//                if (result.code) {
-//                    layer.msg(result.msg);
-//                    window.location.href='/admin/index/index';
-//                }else{
-//                    layer.msg(result.msg);
-//                }
-//            }
-//        });
-//    })
+
+    $(function () {
+        change_verify();
+    })
+    //刷新验证码
+    function change_verify() {
+        var capsrc = '{$verify}?d=';
+        $('#verify_img').attr('src', capsrc + Math.random());
+    }
+
 </script>
