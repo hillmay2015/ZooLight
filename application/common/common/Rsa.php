@@ -13,22 +13,22 @@ class Rsa {
      * 获取私钥
      * @return bool|resource
      */
-    private static function getPrivateKey()
+    public function getPrivateKey()
     {
-        $abs_path = dirname(__FILE__) . '/rsa_private_key.pem';
+        $abs_path = dirname(__FILE__) . '/cert/rsa_private.pem';
         $content = file_get_contents($abs_path);
-        return openssl_pkey_get_private($content);
+        return $content;
     }
 
     /**
      * 获取公钥
      * @return bool|resource
      */
-    private static function getPublicKey()
+    public function getPublicKey()
     {
-        $abs_path = dirname(__FILE__) . '/rsa_public_key.pem';
+        $abs_path = dirname(__FILE__) . '/cert/rsa_public_key.pem';
         $content = file_get_contents($abs_path);
-        return openssl_pkey_get_public($content);
+        return $content;
     }
 
     /**
@@ -36,12 +36,12 @@ class Rsa {
      * @param string $data
      * @return null|string
      */
-    public static function privEncrypt($data = '')
+    public function privEncrypt($data = '')
     {
         if (!is_string($data)) {
             return null;
         }
-        return openssl_private_encrypt($data,$encrypted,self::getPrivateKey()) ? base64_encode($encrypted) : null;
+        return openssl_private_encrypt($data,$encrypted,$this->getPrivateKey()) ? base64_encode($encrypted) : null;
     }
 
     /**
@@ -49,12 +49,12 @@ class Rsa {
      * @param string $data
      * @return null|string
      */
-    public static function publicEncrypt($data = '')
+    public function publicEncrypt($data = '')
     {
         if (!is_string($data)) {
             return null;
         }
-        return openssl_public_encrypt($data,$encrypted,self::getPublicKey()) ? base64_encode($encrypted) : null;
+        return openssl_public_encrypt($data,$encrypted,$this->getPublicKey()) ? base64_encode($encrypted) : null;
     }
 
     /**
@@ -62,12 +62,12 @@ class Rsa {
      * @param string $encrypted
      * @return null
      */
-    public static function privDecrypt($encrypted = '')
+    public  function privDecrypt($encrypted = '')
     {
         if (!is_string($encrypted)) {
             return null;
         }
-        return (openssl_private_decrypt(base64_decode($encrypted), $decrypted, self::getPrivateKey())) ? $decrypted : null;
+        return (openssl_private_decrypt(base64_decode($encrypted), $decrypted, $this->getPrivateKey())) ? $decrypted : null;
     }
 
     /**
@@ -75,12 +75,12 @@ class Rsa {
      * @param string $encrypted
      * @return null
      */
-    public static function publicDecrypt($encrypted = '')
+    public  function publicDecrypt($encrypted = '')
     {
         if (!is_string($encrypted)) {
             return null;
         }
-        return (openssl_public_decrypt(base64_decode($encrypted), $decrypted, self::getPublicKey())) ? $decrypted : null;
+        return (openssl_public_decrypt(base64_decode($encrypted), $decrypted, $this->getPublicKey())) ? $decrypted : null;
     }
 
 }
