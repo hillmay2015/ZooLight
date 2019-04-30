@@ -10,6 +10,8 @@ define('ADMIN_JS','/static/admin/h-ui.admin/js/');
 define('ADMIN_IMAGES','/static/admin/h-ui.admin/images/');
 define('ADMIN_SKIN','/static/admin/h-ui.admin/skin/');
 
+define('COMMON_JS','/static/common/js/');
+
 define('LIB','/static/admin/lib/');
 
 return [

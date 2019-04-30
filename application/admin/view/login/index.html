@@ -3,11 +3,11 @@
 <div class="header">O2O团购网</div>
 <div class="loginWraper">
     <div id="loginform" class="loginBox">
-        <form class="form form-horizontal" action="{:url('login/loginPost')}" method="post">
+        <!--<form class="form form-horizontal" action="{:url('login/loginPost')}" method="post">-->
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
-                    <input name="admin_name" type="text" placeholder="账户" id="admin_nmae" class="input-text size-L">
+                    <input name="admin_name" type="text" placeholder="账户" id="admin_name" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
@@ -42,11 +42,13 @@
                 </div>
                 <textarea id="rsa_public_key" style="display: none" rows="15" cols="65">{$rsa_public}</textarea>
             </div>
-        </form>
+        <!--</form>-->
     </div>
 </div>
 <div class="footer">2019 ©Hillmay芝麻喵喵||蜀ICP备19009311号</div>
 {include file="layout/footer" /}
+<script type="text/javascript" src="{$Think.COMMON_JS}jsencrypt.min.js"></script>
+<script type="text/javascript" src="{$Think.COMMON_JS}jQuery.md5.js"></script>
 <script>
     //重置按钮
     $('input[type="reset"]').click(function () {
@@ -66,4 +68,36 @@
         $('#verify_img').attr('src', capsrc + Math.random());
     }
 
+    $('input[type="submit"]').click(function () {
+        var crypt = new JSEncrypt();
+        var username = $("#admin_name").val();
+        var rsa_username = encodeURIComponent(crypt.encrypt(username));
+        // 经RSA加密后的数据
+
+        var pwd = $("#password").val();
+
+        var rsa_pwd = encodeURIComponent(crypt.encrypt(pwd));
+
+        // 经RSA加密后的数据
+        $.ajax({
+            url: "{:url('login/loginPost')}",
+            data: {
+                "admin_name": rsa_username,
+                "password": rsa_pwd,
+                "captcha":$('#captcha').val()
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                if(data.code==1){
+                    layer.msg(data.msg);
+                }else{
+                    layer.msg(data.msg);
+                    change_verify();
+                }
+
+            }
+        })
+
+    })
 </script>

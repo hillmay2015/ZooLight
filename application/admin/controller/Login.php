@@ -6,6 +6,7 @@
  */
 namespace app\admin\controller;
 
+use app\common\common\Rsa;
 use think\Controller;
 use think\facade\Session;
 use think\captcha\Captcha;
@@ -32,6 +33,9 @@ class Login extends controller
      */
     public function index()
     {
+        $rsa = new Rsa();
+        $rsa_public = $rsa->getPublicKey();//获取公钥
+        $this->assign('rsa_public', $rsa_public);
         return $this->fetch();
     }
 
@@ -50,7 +54,10 @@ class Login extends controller
      */
     public function loginPost()
     {
-        $data = $this->request->param();
+        $rsa = new Rsa();
+        $data['admin_name'] = $rsa->privDecrypt(urldecode($_POST['admin_name']));//私钥解密
+        $data['password'] = $rsa->privDecrypt(urldecode($_POST['password']));//私钥解密
+        $data['captcha'] = $_POST['captcha'];
         $this->check($data);
         $model = new AdminModel();
         array_pop($data);//删除最后一个元素
