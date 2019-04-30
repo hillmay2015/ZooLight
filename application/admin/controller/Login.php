@@ -7,6 +7,7 @@
 namespace app\admin\controller;
 
 use app\common\common\Rsa;
+use think\App;
 use think\Controller;
 use think\facade\Session;
 use think\captcha\Captcha;
@@ -27,6 +28,16 @@ class Login extends controller
         'password.require' => '请输入登录密码',
         'captcha.require' => '验证码不能为空',
     ];
+    public function __construct()
+    {
+        parent::__construct();
+        $act = $this->request->action();
+        //如果已经登录
+        if (Session::has('member')) {
+            $this->redirect($this->request->domain() . '/admin/index');
+        }
+    }
+
 
     /**
      * 登录页面
