@@ -36,6 +36,7 @@ class Login extends controller
         $rsa = new Rsa();
         $rsa_public = $rsa->getPublicKey();//获取公钥
         $this->assign('rsa_public', $rsa_public);
+        $this->assign('rsa_public', $rsa_public);
         return $this->fetch();
     }
 
@@ -54,9 +55,10 @@ class Login extends controller
      */
     public function loginPost()
     {
+
         $rsa = new Rsa();
-        $data['admin_name'] = $rsa->privDecrypt(urldecode($_POST['admin_name']));//私钥解密
-        $data['password'] = $rsa->privDecrypt(urldecode($_POST['password']));//私钥解密
+        $data['admin_name'] = $rsa->privDecrypt($_POST['admin_name']);//私钥解密
+        $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
         $data['captcha'] = $_POST['captcha'];
         $this->check($data);
         $model = new AdminModel();
