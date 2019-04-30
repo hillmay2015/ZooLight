@@ -28,6 +28,8 @@ class Login extends controller
         'password.require' => '请输入登录密码',
         'captcha.require' => '验证码不能为空',
     ];
+
+
     public function __construct()
     {
         parent::__construct();
