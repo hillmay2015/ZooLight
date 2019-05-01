@@ -11,9 +11,16 @@ namespace app\admin\controller;
 class Manager extends Admin
 {
     /**
-     * 权限管理列表
+     * 管理员列表
      */
     public function managerList()
+    {
+        return $this->fetch();
+    }
+    /**
+     * 管理员添加
+     */
+    public function managerAdd()
     {
         return $this->fetch();
     }
