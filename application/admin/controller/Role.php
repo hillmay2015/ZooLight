@@ -21,7 +21,8 @@ class Role extends Admin
         return $this->fetch();
     }
 
-    public function roleAdd(){
-
+    public function roleAdd()
+    {
+        return $this->fetch();
     }
 }
