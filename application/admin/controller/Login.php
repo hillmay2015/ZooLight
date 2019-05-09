@@ -48,7 +48,7 @@ class Login extends controller
     {
         $rsa = new Rsa();
         $rsa_public = $rsa->getPublicKey();//获取公钥
-
+        $this->assign('rsa_public', $rsa_public);
         return $this->fetch();
     }
 
@@ -72,9 +72,6 @@ class Login extends controller
         $data['admin_name'] = $rsa->privDecrypt($_POST['admin_name']);//私钥解密
         $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
         $data['captcha'] = $_POST['captcha'];
-        echo '<pre>';
-        print_r($data);
-        exit();
         $this->check($data);
         $model = new AdminModel();
         array_pop($data);//删除最后一个元素
