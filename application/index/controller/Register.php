@@ -13,20 +13,23 @@ use think\Controller;
 use think\captcha\Captcha;
 use think\validate;
 use app\index\model\User;
+use app\common\common\Rsa;
 
 
 class Register extends Controller
 {
     protected $rule = [
-        'user_name' => 'require',
-        'email' => 'require',
+        'user_name' => 'require|unique',
+        'email' => 'require|unique',
         'password' => 'require',
     ];
 
     protected $message = [
         'user_name.require' => '用户名不能为空',
+        'user_name.unique' => '用户名已存在',
         'email.require' => '邮箱不能为空',
         'email.email' => '邮箱格式不正确',
+        'email.unique' => '邮箱已存在',
         'password.require' => '密码不能为空',
 
     ];
@@ -40,6 +43,9 @@ class Register extends Controller
 
     public function index()
     {
+        $rsa = new Rsa();
+        $rsa_public = $rsa->getPublicKey();//获取公钥
+        $this->assign('rsa_public', $rsa_public);
         return $this->fetch();
     }
 
@@ -60,9 +66,19 @@ class Register extends Controller
     public function doRegister()
     {
         $data = $this->request->param();
+        $rsa = new Rsa();
+        $data['user_name'] = $rsa->privDecrypt($_POST['user_name']);//私钥解密
+        $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
+        $data['email'] = $rsa->privDecrypt($_POST['email']);//私钥解密
+        $data['captcha'] = $_POST['captcha'];
         $this->check($data);
         array_pop($data);//删除最后一个元素
         $res = $this->model->save($data);
+        if($res){
+            $this->success('注册成功,请先登录',url('login/index'));
+        }else{
+            $this->error('注册失败',url('index'));
+    }
 
     }
 

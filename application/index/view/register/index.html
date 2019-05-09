@@ -21,15 +21,15 @@
         </ul>
         <div class="login-link">
             <span>我已注册，现在就</span>
-            <a href="{:url('login/index')}"">登录</a>
+            <a href="{:url('login/index')}">登录</a>
         </div>
     </div>
 
     <div class="content">
-        <form action="{:url('doRegister')}" method="post">
+        <form >
             <p class="pass-form-item">
                 <label class="pass-label">用户名</label>
-                <input type="text" name="user" class="pass-text-input" placeholder="请设置用户名">
+                <input type="text" name="user_name" class="pass-text-input" placeholder="请设置用户名">
             </p>
             <p class="pass-form-item">
                 <label class="pass-label">邮箱号</label>
@@ -46,14 +46,15 @@
             </p>
             <p class="pass-form-item">
                 <label class="pass-label">验证码</label>
-                <input type="text" name="verifyCode" class="pass-text-input " placeholder="请输入验证码">
+                <input type="text" name="captcha" class="pass-text-input " id="captcha" placeholder="请输入验证码">
                 <?php $verify=url('verify');?>
-                <img src="{:url('register/verify')}" alt="captcha"  title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
+                <img src="{:url('register/verify')}" alt="captcha"  id="verify_img" title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
             </p>
 
             <p class="pass-form-item">
                 <input type="submit" value="注册" class="pass-button">
             </p>
+            <textarea id="rsa_public_key" style="display: none" rows="15" cols="65">{$rsa_public}</textarea>
         </form>
 
     </div>
@@ -66,3 +67,52 @@
 </div>
 </body>
 </html>
+<script type="text/javascript" src="/static/common/js/jsencrypt.min.js"></script>
+<script>
+
+
+    $(function () {
+        change_verify();
+    })
+    //刷新验证码
+    function change_verify() {
+        var capsrc = '{$verify}?d=';
+        $('#verify_img').attr('src', capsrc + Math.random());
+    }
+
+    $('input[type="submit"]').click(function () {
+        var crypt = new JSEncrypt();
+        crypt.setPublicKey($('#rsa_public_key').val());
+
+        var username = $("#user_name").val();
+        var pwd = $("#password").val();
+        var email = $("#email").val();
+
+        // 经RSA加密后的数据
+        var rsa_username = crypt.encrypt(username);
+        var rsa_pwd = crypt.encrypt(pwd);
+        var rsa_email= crypt.encrypt(email);
+
+        $.ajax({
+            url: "{:url('register/doRegister')}",
+            data: {
+                "user_name": rsa_username,
+                "password": rsa_pwd,
+                "email": rsa_email,
+                "captcha": $('#captcha').val()
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg);
+                    window.location.href = '/index/login/index';
+                } else {
+                    layer.msg(data.msg);
+                    change_verify();
+                }
+
+            }
+        })
+    })
+</script>
