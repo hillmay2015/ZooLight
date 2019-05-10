@@ -52,11 +52,14 @@ class BuyService extends Controller
         $insert_order['total_money'] = $data['total'];
         $insert_order['discount'] = $data['discount'];
         $insert_order['state'] = 0;
+        $insert_order['user_id']=$data['user_id'];
         $order_id = $order->insertGetId($insert_order);
         if (empty($order_id)) {
             throw new Exception('订单表数据插入失败');
+        }else{
+            $this->order_id = $order_id;
         }
-        $this->order_id = $order_id;
+
 
     }
 
@@ -72,7 +75,10 @@ class BuyService extends Controller
         $res = $pay->insert($insert_pay);
         if (empty($res)) {
             throw new Exception('支付表插入失败');
+        }else{
+
         }
+
     }
 
     /**
