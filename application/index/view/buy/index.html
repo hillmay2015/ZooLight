@@ -1,99 +1,116 @@
 {include file="layout/top" /}
 {include file="layout/header" /}
 
-<link rel="stylesheet" href="{$Think.CSS}pay.css" />
+<link rel="stylesheet" href="{$Think.CSS}pay.css"/>
 <!--支付第一步-->
 <div class="firstly">
     <div class="bindmobile-wrap">
-        采用<span style="color:red">微信支付</span>，购买成功后，团购券将发到您的注册邮箱：<span class="mobile">tracywxh0830@126.com</span><a class="link"></a>
+        采用<span style="color:red">微信支付</span>，购买成功后，团购券将发到您的注册邮箱：<span class="mobile">tracywxh0830@126.com</span><a
+            class="link"></a>
     </div>
-
-    <table class="table table-goods" cellpadding="0" cellspacing="0">
-        <tbody>
-        <tr>
-            <th class="first">商品</th>
-            <th width="120">单价</th>
-            <th width="190">数量</th>
-            <th width="140">优惠</th>
-            <th width="140" class="last">小计</th>
-        </tr>
-        <tr class="j-row">
-            <td class="vtop">
-                <div class="title-area" title="{$info.name}">
-                    <div class="img-wrap">
-                        <a href="" target="_blank"><img src="{$Think.ADMIN_IMAGE}{$info.image}" width="130" height="79"></a>
-                    </div>
-                    <div class="title-wrap">
-                        <div class="title">
-                            <a href="" class="link">{$info.sub_name}"</a>
+    <form method="post" action="{:url('buy/stepTwo')}" id="form">
+        <input type="hidden" name="user_id" value="1">
+        <input type="hidden" name="product_id" value="{$info.id}">
+        <input type="hidden" name="name" value="{$info.name}">
+        <input type="hidden" name="total"  value="{$info.price-$info.discount_price}" id="total">
+        <input type="hidden" name="discount" value="{$info.discount_price|default=0}">
+        <table class="table table-goods" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <th class="first">商品</th>
+                <th width="120">单价</th>
+                <th width="190">数量</th>
+                <th width="140">优惠</th>
+                <th width="140" class="last">小计</th>
+            </tr>
+            <tr class="j-row">
+                <td class="vtop">
+                    <div class="title-area" name="product_name" title="{$info.name}">
+                        <div class="img-wrap">
+                            <a href="" target="_blank"><img src="{$Think.ADMIN_IMAGE}{$info.image}" width="130"
+                                                            height="79"></a>
                         </div>
-                        <div class="attrs"></div>
+                        <div class="title-wrap">
+                            <div class="title">
+                                <a href="" class="link">{$info.sub_name}"</a>
+                            </div>
+                            <div class="attrs"></div>
+                        </div>
                     </div>
-                </div>
-            </td>
-            <td>￥<span class="font14">{$info.price}</span></td>
-            <td class="j-cell">
-                <div class="buycount-ctrl">
-                    <a class="j-ctrl ctrl minus disabled"><span class="horizontal"></span></a>
-                    <input type="text" value="1" maxlength="10">
-                    <a class="ctrl j-ctrl plus"><span class="horizontal"></span><span class="vertical"></span></a>
-                </div>
-                <span class="err-wrap j-err-wrap"></span>
-            </td>
-            <td class="j-cellActivity">-￥<span>{$info.discount_price|default=0}</span><br></td>
-            <td class="price font14">¥<span class="j-sumPrice">{$info.price}</span></td>
-        </tr>
-        </tbody>
-    </table>
+                </td>
+                <td>￥<span class="font14" name="price">{$info.price}</span></td>
+                <td class="j-cell">
+                    <div class="buycount-ctrl">
+                        <a class="j-ctrl ctrl minus disabled"><span class="horizontal"></span></a>
+                        <input type="text" value="1" maxlength="10" name="number">
+                        <a class="ctrl j-ctrl plus"><span class="horizontal"></span><span class="vertical"></span></a>
+                    </div>
+                    <span class="err-wrap j-err-wrap"></span>
+                </td>
+                <td class="j-cellActivity">-￥<span>{$info.discount_price|default=0}</span><br></td>
+                <td class="price font14">¥<span class="j-sumPrice">{$info.price}</span></td>
+            </tr>
+            </tbody>
+        </table>
 
 
-
-    <div class="final-price-area">应付总额：<span class="sum">￥<span class="price">{$info.price-$info.discount_price}</span></span></div>
-
-    <div class="page-button-wrap">
-        <a href="{:url('buy/stepTwo')}" class="btn btn-primary">确认</a>
-    </div>
-
+        <div class="final-price-area">应付总额：<span class="sum">￥<span
+                class="price" class="total_price">{$info.price-$info.discount_price}</span></span>
+        </div>
+        <div class="page-button-wrap">
+            <a href="javascript:confirm_submit();" class="btn btn-primary">确认</a>
+        </div>
+    </form>
     <div style="width: 100%;min-width: 1200px;height: 5px;background: #dbdbdb;margin: 50px 0 20px;"></div>
 </div>
 
 <script>
     //校验正整数
-    function isNaN(number){
+    function isNaN(number) {
         var reg = /^[1-9]\d*$/;
         return reg.test(number);
     }
 
-    function inputChange(num){
-        if(!isNaN(num)){
+    function inputChange(num) {
+        if (!isNaN(num)) {
             $(".buycount-ctrl input").val("1");
         }
-        else{
+        else {
             $(".buycount-ctrl input").val(num);
             $(".j-sumPrice").text($("td .font14").text() * num - $(".j-cellActivity span").text());
             $(".sum .price").text($("td .font14").text() * num - $(".j-cellActivity span").text());
-            if(num == 1){
+
+            if (num == 1) {
                 $(".buycount-ctrl a").eq(0).addClass("disabled");
             }
-            else{
+            else {
                 $(".buycount-ctrl a").eq(0).removeClass("disabled");
             }
         }
     }
 
-    $(".buycount-ctrl input").keyup(function(){
+    $(".buycount-ctrl input").keyup(function () {
         var num = $(".buycount-ctrl input").val();
         inputChange(num);
     });
-    $(".minus").click(function(){
+    $(".minus").click(function () {
         var num = $(".buycount-ctrl input").val();
         num--;
         inputChange(num);
     });
-    $(".plus").click(function(){
+    $(".plus").click(function () {
         var num = $(".buycount-ctrl input").val();
         num++;
         inputChange(num);
     });
+
+    /**
+     * 提交数据
+     */
+    function confirm_submit() {
+        var final_total=$('.sum .price').text()
+        $('#total').val(final_total);
+        $('#form').submit();
+    }
 </script>
 {include file="layout/footer" /}

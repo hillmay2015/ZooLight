@@ -55,6 +55,9 @@ class Buy extends Controller
     public function stepTwo()
     {
         $service = new BuyService();
+        echo '<pre>';
+        print_r($this->request->param());
+        exit();
         $data = $service->createOrder($this->request->param());
         $this->assign('data', $data);
         return $this->fetch();
