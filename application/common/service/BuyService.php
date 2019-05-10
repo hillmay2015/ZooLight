@@ -9,10 +9,11 @@ namespace app\common\service;
 
 use app\common\model\Order;
 use app\common\model\Pay;
+use think\Controller;
 use think\Db;
 use think\Exception;
 
-class BuyService
+class BuyService extends Controller
 {
     protected $order_id = null;
 
@@ -29,6 +30,7 @@ class BuyService
 
             // 提交事务
             Db::commit();
+            return true;
         } catch (Exception $e) {
             $this->error($e->getMessage());
         }
@@ -45,10 +47,10 @@ class BuyService
         $insert_order['order_sn'] = $this->makeOrderSn();
         $insert_order['product_id'] = $data['product_id'];
         $insert_order['product_name'] = $data['product_name'];
-        $insert_order['number'] = $data['product_id'];
+        $insert_order['number'] = $data['number'];
         $insert_order['price'] = $data['price'];
         $insert_order['total_money'] = $data['total'];
-        $insert_order['discout'] = $data['discout'];
+        $insert_order['discount'] = $data['discount'];
         $insert_order['state'] = 0;
         $order_id = $order->insertGetId($insert_order);
         if (empty($order_id)) {
