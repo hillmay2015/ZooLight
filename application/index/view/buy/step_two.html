@@ -23,7 +23,7 @@
             </ul>
         </div>
     </div>
-<form method="post" action="{:url('stepThree')}">
+<form method="post" action="{:url('pay')}">
     <div class="order_infor_module">
         <div class="order_details">
             <table width="100%">
@@ -53,9 +53,9 @@
 
     <div class="pay">第三方账户支付</div>
     <div class="paychoose">
-        <input type="radio" checked />百度钱包
-        <input type="radio" />支付宝
-        <input type="radio" />支付宝扫码
+        <input type="radio"  name="pay" value="1"/>百度钱包
+        <input type="radio" name="pay" value="2" checked />支付宝
+        <input type="radio" name="pay" value="3" />微信支付
     </div>
 
     <div class="pay">银行卡直接支付</div>
@@ -64,7 +64,7 @@
         <input type="checkbox" />招商银行
         <input type="checkbox" />工商银行
     </div>
-    <input type="submit" value="立即支付">
-    <!--<button>立即支付</button>-->
+    <!--<input type="submit" value="立即支付">-->
+    <button>立即支付</button>
 </form>
 </div>

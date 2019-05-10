@@ -7,6 +7,7 @@
  */
 namespace app\index\controller;
 
+use app\common\service\BuyService;
 use think\Controller;
 use app\common\traits\CategoryTraits;
 use app\common\model\Product as ProductModel;
@@ -21,6 +22,10 @@ class Buy extends Controller
         parent::__construct();
         $this->model = new ProductModel();
     }
+
+    /**
+     * 购买第一步
+     */
 
     public function index()
     {
@@ -42,14 +47,20 @@ class Buy extends Controller
         return $this->fetch();
     }
 
+
     /**
-     * 购买第一步
+     * 购买第二步
      */
+
     public function stepTwo()
     {
+        $service = new BuyService();
+        $data = $service->createOrder($this->request->param());
+        $this->assign('data', $data);
         return $this->fetch();
 
     }
+
 
     /**
      * 购买第三步
@@ -66,6 +77,7 @@ class Buy extends Controller
      */
     public function pay()
     {
+        $param = $this->request->param();
 
     }
 
