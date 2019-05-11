@@ -54,7 +54,7 @@ class BuyService extends Controller
         $insert_order['product_name'] = $data['product_name'];
         $insert_order['number'] = $data['number'];
         $insert_order['price'] = $data['price'];
-        $insert_order['total_money'] = $data['total'];
+        $insert_order['total_money'] = $data['total_money'];
         $insert_order['discount'] = $data['discount'];
         $insert_order['state'] = 0;
         $insert_order['user_id'] = $data['user_id'];
