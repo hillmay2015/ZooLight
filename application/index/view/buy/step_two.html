@@ -32,15 +32,15 @@
                     <td class="fl_left ">
                         <ul class="order-list">
                             <li>
-                                <span class="order-list-no">订单1:</span>
-                                <span class="order-list-name">好伦哥6店单人自助</span><span class="order-list-number">2份</span>
+                                <span class="order-list-no">订单{$data.order_sn}:</span>
+                                <span class="order-list-name">{$data.product_name}</span><span class="order-list-number">{$data.number}份</span>
                             </li>
                         </ul>
                     </td>
                     <td class="fl_right">
                         <dl>
                             <dt>应付金额：</dt>
-                            <dd class="money"><span>107.2元</span></dd>
+                            <dd class="money"><span>{$data.total_money}元</span></dd>
                         </dl>
                     </td>
                 </tr>

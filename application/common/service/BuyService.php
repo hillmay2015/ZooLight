@@ -16,6 +16,8 @@ use think\Exception;
 class BuyService extends Controller
 {
     protected $order_id = null;
+    protected $pay_sn = null;
+    protected $order_sn = null;
 
     public function createOrder($data)
     {
@@ -30,7 +32,10 @@ class BuyService extends Controller
 
             // 提交事务
             Db::commit();
-            return true;
+            $data['order_id'] = $this->order_id;
+            $data['pay_sn'] = $this->pay_sn;
+            $data['order_sn'] = $this->order_sn;
+            return $data;
         } catch (Exception $e) {
             $this->error($e->getMessage());
         }
@@ -52,12 +57,13 @@ class BuyService extends Controller
         $insert_order['total_money'] = $data['total'];
         $insert_order['discount'] = $data['discount'];
         $insert_order['state'] = 0;
-        $insert_order['user_id']=$data['user_id'];
+        $insert_order['user_id'] = $data['user_id'];
         $order_id = $order->insertGetId($insert_order);
         if (empty($order_id)) {
             throw new Exception('订单表数据插入失败');
-        }else{
+        } else {
             $this->order_id = $order_id;
+            $this->order_sn = $insert_order['order_sn'];
         }
 
 
@@ -75,10 +81,7 @@ class BuyService extends Controller
         $res = $pay->insert($insert_pay);
         if (empty($res)) {
             throw new Exception('支付表插入失败');
-        }else{
-
         }
-
     }
 
     /**
