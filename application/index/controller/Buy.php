@@ -11,6 +11,7 @@ use app\common\service\BuyService;
 use think\Controller;
 use app\common\traits\CategoryTraits;
 use app\common\model\Product as ProductModel;
+use wxpay;
 
 class Buy extends Controller
 {
@@ -78,7 +79,11 @@ class Buy extends Controller
     public function pay()
     {
         $param = $this->request->param();
-
+        $wxpay = new wxpay\wxpay();
+        $result = $wxpay->setData($param);
+        $wxpay_img = createQr($result['code_url']);
+        $this->assign('img', $wxpay_img);
+        return $this->fetch();
     }
 
     /**

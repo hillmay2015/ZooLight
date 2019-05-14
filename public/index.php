@@ -17,6 +17,7 @@ define('SITE_HOST', $_SERVER['HTTP_HOST']);
 //带HTTP的域名
 define('HTTP_SITE_NOPATH_HOST', "http://" . SITE_HOST);
 define('UPLOAD_IMAGE', '/static/upload/');
+define('EXTEND_PATH', __DIR__ . '/../extend');
 
 // 加载基础文件
 require __DIR__ . '/../thinkphp/base.php';
