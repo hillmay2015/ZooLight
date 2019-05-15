@@ -15,7 +15,8 @@ Trait QrTraits
         $errorCorrectionLevel = 'L';    //容错级别
         $matrixPointSize = 9;            //生成图片大小
         $object = new \QRcode();
-        $img = $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
-        echo $img;die;
+
+        $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
+
     }
 }

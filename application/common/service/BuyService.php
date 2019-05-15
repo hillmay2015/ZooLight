@@ -81,6 +81,8 @@ class BuyService extends Controller
         $res = $pay->insert($insert_pay);
         if (empty($res)) {
             throw new Exception('支付表插入失败');
+        } else {
+            $this->pay_sn = $insert_pay['pay_sn'];
         }
     }
 

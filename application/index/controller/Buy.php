@@ -59,6 +59,7 @@ class Buy extends Controller
     {
         $service = new BuyService();
         $data = $service->createOrder($this->request->param());
+
         $this->assign('data', $data);
         return $this->fetch();
 
@@ -82,9 +83,13 @@ class Buy extends Controller
     {
         $param = $this->request->param();
         $wxpay = new wxpay\wxpay();
+        echo '<pre>';
+        print_r($param);
+        exit();
         $result = $wxpay->setData($param);
-        $this->createQr($result['code_url']);
+
         $this->assign('url', $result['code_url']);
+        $this->createQr($result['code_url']);
         $this->view->engine->layout(false);
         return $this->fetch();
     }
