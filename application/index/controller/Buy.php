@@ -88,6 +88,7 @@ class Buy extends Controller
         $this->assign('url', $result['code_url']);
         $this->createQr($result['code_url']);
         $this->view->engine->layout(false);
+        $this->assign('data',$param);
         return $this->fetch();
     }
 
