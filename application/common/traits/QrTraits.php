@@ -6,16 +6,16 @@
  */
 namespace app\common\traits;
 
-class Qrcode
+Trait QrTraits
 {
     function createQr($url = '')
     {
         require_once EXTEND_PATH . '/phpqrcode/phpqrcode.php';
 
         $errorCorrectionLevel = 'L';    //容错级别
-        $matrixPointSize = 5;            //生成图片大小
-
-        $img = QRcode::png($url, false, $errorCorrectionLevel, $matrixPointSize, 2, EXTEND_PATH . '/phpqrcode/');
-        return $img;
+        $matrixPointSize = 9;            //生成图片大小
+        $object = new \QRcode();
+        $img = $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
+        return $img;die;
     }
 }

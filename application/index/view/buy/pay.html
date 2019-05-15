@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<img src="{:url('index/buy/pay')}?url={$url}">
-</body>
-</html>
+{include file="layout/top" /}
+<style>
+   .code{
+       padding: 78px 0 0 0;
+       width: 300px;
+       margin: 0 auto;
+   }
+    .code .scan{
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        margin-top: 20px;
+        background: #EDAB84;
+        color: #fff;
+        font-size: 16px;
+    }
+    .code a{
+        display: block;
+    }
+</style>
+<div class="code">
+    <a href="javascript:void(0)"><img src="{:url('index/buy/pay')}?url={$url}"></a>
+    <a href="javascript:void(0)" class="scan">请用微信扫一扫，扫码支付</a>
+</div>
