@@ -16,6 +16,6 @@ Trait QrTraits
         $matrixPointSize = 9;            //生成图片大小
         $object = new \QRcode();
         $img = $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
-        return $img;die;
+        echo $img;die;
     }
 }

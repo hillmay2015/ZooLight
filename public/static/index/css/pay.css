@@ -485,3 +485,24 @@ table {
 .third{
     display: none;
 }
+
+/**微信扫一扫支付 start**/
+.code{
+    padding: 78px 0 0 0;
+    width: 300px;
+    margin: 0 auto;
+}
+.code .scan{
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 20px;
+    background: #EDAB84;
+    color: #fff;
+    font-size: 16px;
+}
+.code a{
+    display: block;
+}
+
+/**微信扫一扫支付 end**/
