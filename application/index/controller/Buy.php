@@ -12,6 +12,7 @@ use think\Controller;
 use app\common\traits\CategoryTraits;
 use app\common\model\Product as ProductModel;
 use wxpay;
+use app\common\traits\Qrcode;
 
 class Buy extends Controller
 {
@@ -81,8 +82,7 @@ class Buy extends Controller
         $param = $this->request->param();
         $wxpay = new wxpay\wxpay();
         $result = $wxpay->setData($param);
-        $wxpay_img = createQr($result['code_url']);
-        $this->assign('img', $wxpay_img);
+        $this->assign('url', $result['code_url']);
         return $this->fetch();
     }
 

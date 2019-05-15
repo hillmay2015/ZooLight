@@ -13,13 +13,3 @@
 /**
  * @param string $url
  */
-function createQr($url = '')
-{
-    require_once EXTEND_PATH . '/phpqrcode/phpqrcode.php';
-
-    $errorCorrectionLevel = 'L';    //容错级别
-    $matrixPointSize = 5;            //生成图片大小
-
-    $img = QRcode::png($url, false, $errorCorrectionLevel, $matrixPointSize, 2, EXTEND_PATH . '/phpqrcode/');
-    return $img;
-}
