@@ -31,20 +31,19 @@
             <div class="login-area">
                 <div class="title">登录</div>
                 <div class="login">
-                    <form action="{:url('doLogin')}" method="post">
                         <div class="ordinaryLogin">
 
                             <p class="pass-form-item">
                                 <label class="pass-label">用户名</label>
-                                <input type="text" name="userName" class="pass-text-input" placeholder="用户名">
+                                <input type="text" name="user_name" id="user_name" class="pass-text-input" placeholder="用户名">
                             </p>
                             <p class="pass-form-item">
                                 <label class="pass-label">密码</label>
-                                <input type="password" name="password" class="pass-text-input" placeholder="密码">
+                                <input type="password" name="password" id="password" class="pass-text-input" placeholder="密码">
                             </p>
                             <p class="pass-form-item">
                                 <label class="pass-label">验证码</label>
-                                <input type="text" name="verifyCode" class="pass-text-input" placeholder="验证码">
+                                <input type="text" name="captcha" class="pass-text-input" placeholder="验证码">
                                 <?php $verify=url('verify');?>
                                 <img src="{:url('login/verify')}" alt="captcha"  title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
 
@@ -60,7 +59,7 @@
 
                             </p>
                         </div>
-                    </form>
+                    <textarea id="rsa_public_key" style="display: none" rows="15" cols="65">{$rsa_public}</textarea>
                 </div>
             </div>
         </div>
@@ -88,3 +87,55 @@
 </script>
 </body>
 </html>
+<script type="text/javascript" src="{$Think.COMMON_JS}jsencrypt.min.js"></script>
+<script type="text/javascript" src="{$Think.COMMON_JS}layer/2.4/layer.js"></script>
+<script>
+
+    $(function () {
+        change_verify();
+    })
+    //刷新验证码
+    function change_verify() {
+        var capsrc = '{$verify}?d=';
+        $('#verify_img').attr('src', capsrc + Math.random());
+    }
+
+    $('input[type="submit"]').click(function () {
+
+
+        var crypt = new JSEncrypt();
+        crypt.setPublicKey($('#rsa_public_key').val());
+
+        var username = $("#user_name").val();
+        var pwd = $("#password").val();
+
+
+
+        // 经RSA加密后的数据
+        var rsa_username = crypt.encrypt(username);
+        var rsa_pwd = crypt.encrypt(pwd);
+
+        layer.msg(rsa_username );
+
+        $.ajax({
+            url: "{:url('Login/doLogin')}",
+            data: {
+                "user_name": rsa_username,
+                "password": rsa_pwd,
+                "captcha": $('#captcha').val()
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg);
+                    window.location.href = '/index/login/index';
+                } else {
+                    layer.msg(data.msg);
+                    change_verify();
+                }
+
+            }
+        })
+    })
+</script>

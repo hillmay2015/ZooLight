@@ -10,11 +10,39 @@ namespace app\index\controller;
 
 use think\captcha\Captcha;
 use think\Controller;
+use app\common\common\Rsa;
+use think\validate;
+use app\index\model\User;
 
 class Login extends Controller
 {
+    protected $rule = [
+        'user_name' => 'require|unique:user',
+        'password' => 'require',
+    ];
+
+    protected $message = [
+        'user_name.require' => '用户名不能为空',
+        'email.email' => '邮箱格式不正确',
+        'email.unique' => '邮箱已存在',
+        'password.require' => '密码不能为空',
+
+    ];
+
+    protected $model;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->model = new User();
+    }
+
+
     public function index()
     {
+        $rsa = new Rsa();
+        $rsa_public = $rsa->getPublicKey();//获取公钥
+        $this->assign('rsa_public', $rsa_public);
         return $this->fetch();
     }
 
@@ -33,6 +61,37 @@ class Login extends Controller
      */
     public function doLogin()
     {
+        $data = $this->request->param();
+        $rsa = new Rsa();
+        $data['user_name'] = $rsa->privDecrypt($_POST['user_name']);//私钥解密
+        $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
+       // $data['email'] = $rsa->privDecrypt($_POST['email']);//私钥解密
+       // $data['captcha'] = $_POST['captcha'];
+        $this->check($data);
+       // array_pop($data);//删除最后一个元素
 
+        $res = $this->model->findOrFail($data);
+        if ($res) {
+            $this->success('注册成功,请先登录', url('login/index'));
+        } else {
+            $this->error('注册失败', url('index'));
+        }
+    }
+
+    /**
+     * 验证数据
+     */
+    protected function check($data)
+    {
+        $validate = new Validate($this->rule, $this->message);
+        $result = $validate->check($data);
+        if (!$result) {
+            $this->error($validate->getError());
+        }
+        $captcha = new Captcha();
+        if (!$captcha->check($data['captcha'])) {
+            // 验证失败
+            $this->error('验证码错误');
+        }
     }
 }
