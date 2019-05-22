@@ -26,7 +26,7 @@
     </div>
 
     <div class="content">
-      <form method="post" action="">
+      <!--<form method="post" action="">-->
             <p class="pass-form-item">
                 <label class="pass-label">用户名</label>
                 <input type="text" name="user_name" id="user_name" class="pass-text-input" placeholder="请设置用户名">
@@ -55,7 +55,7 @@
                 <input type="submit" value="注册" class="pass-button">
             </p>
             <textarea id="rsa_public_key" style="display: none" rows="15" cols="65">{$rsa_public}</textarea>
-      </form>
+      <!--</form>-->
     </div>
 
     <div class="foot">
@@ -89,6 +89,9 @@
         var pwd = $("#password").val();
         var confirm_pwd = $("#confirm_password").val();
         var email = $("#email").val();
+        if(confirm_pwd!=pwd){
+            layer.msg('两次输入的密码不一致');
+        }
 
         // 经RSA加密后的数据
         var rsa_username = crypt.encrypt(username);
