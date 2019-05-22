@@ -87,6 +87,7 @@
 
         var username = $("#user_name").val();
         var pwd = $("#password").val();
+        var confirm_pwd = $("#confirm_password").val();
         var email = $("#email").val();
 
         // 经RSA加密后的数据
@@ -99,6 +100,7 @@
             data: {
                 "user_name": rsa_username,
                 "password": rsa_pwd,
+                "confirm_password":confirm_pwd,
                 "email": rsa_email,
                 "captcha": $('#captcha').val()
             },
