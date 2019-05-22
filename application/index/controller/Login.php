@@ -17,14 +17,12 @@ use app\index\model\User;
 class Login extends Controller
 {
     protected $rule = [
-        'user_name' => 'require|unique:user',
+        'user_name' => 'require',
         'password' => 'require',
     ];
 
     protected $message = [
         'user_name.require' => '用户名不能为空',
-        'email.email' => '邮箱格式不正确',
-        'email.unique' => '邮箱已存在',
         'password.require' => '密码不能为空',
 
     ];
@@ -65,8 +63,7 @@ class Login extends Controller
         $rsa = new Rsa();
         $data['user_name'] = $rsa->privDecrypt($_POST['user_name']);//私钥解密
         $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
-       // $data['email'] = $rsa->privDecrypt($_POST['email']);//私钥解密
-       // $data['captcha'] = $_POST['captcha'];
+        $data['captcha'] = $_POST['captcha'];
         $this->check($data);
        // array_pop($data);//删除最后一个元素
 
