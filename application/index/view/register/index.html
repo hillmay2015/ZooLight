@@ -96,6 +96,7 @@
         // 经RSA加密后的数据
         var rsa_username = crypt.encrypt(username);
         var rsa_pwd = crypt.encrypt(pwd);
+        var rsa_pwd_confirm = crypt.encrypt(confirm_pwd);
         var rsa_email= crypt.encrypt(email);
 
         $.ajax({
@@ -103,7 +104,7 @@
             data: {
                 "user_name": rsa_username,
                 "password": rsa_pwd,
-                "confirm_password":confirm_pwd,
+                "confirm_password":rsa_pwd_confirm,
                 "email": rsa_email,
                 "captcha": $('#captcha').val()
             },

@@ -69,13 +69,13 @@ class Register extends Controller
         $rsa = new Rsa();
         $data['user_name'] = $rsa->privDecrypt($_POST['user_name']);//私钥解密
         $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
-        $param['confirm_password']=$rsa->privDecrypt($_POST['confirm_password']);
+      //  $param['confirm_password']=$rsa->privDecrypt($_POST['confirm_password']);
         $data['email'] = $rsa->privDecrypt($_POST['email']);//私钥解密
         $data['captcha'] = $_POST['captcha'];
         $this->check($data);
-        if($param['password']!=$param['confirm_password']){
-            $this->error('两次输入的密码不一致');
-        }
+//        if($param['password']!=$param['confirm_password']){
+//            $this->error('两次输入的密码不一致');
+//        }
         array_pop($data);//删除最后一个元素
         $res = $this->model->save($data);
         if($res){
