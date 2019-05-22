@@ -65,7 +65,7 @@ class Login extends Controller
         $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
         $data['captcha'] = $_POST['captcha'];
         $this->check($data);
-       // array_pop($data);//删除最后一个元素
+        array_pop($data);//删除最后一个元素
 
         $res = $this->model->findOrFail($data);
         if ($res) {
