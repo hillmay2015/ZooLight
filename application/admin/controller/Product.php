@@ -50,17 +50,40 @@ class Product extends Admin
     {
         $param = $this->request->param();
         $where = [];
-
-        if (isset($param['name']) && !empty($param['name'])) {
-            $name = $param['name'];
+        $name = $this->request->param('name', '');
+        $start_time = $this->request->param('start_time');
+        $end_time = $this->request->param('end_time');
+        if (isset($name) && !empty($name)) {
             $where['name'] = $name;
-            $this->assign('name', $name);
+        }
+        //开始时间处理
+        if ($start_time) {
+            $start = strtotime($start_time);
+        }
+        //结束时间处理
+        if ($end_time) {
+            $end = strtotime($end_time);
+        }
+        //组合时间搜索条件
+        if ($start_time && $end_time) {
+            $where['start_time'] = ['egt', $start];
+            $where['end_time'] = ['elt', $end];
+        } else {
+            if ($start_time) {
+                $where['start_time'] = ['egt', $start];
+            }
+            if ($end_time) {
+                $where['end_time'] = ['elt', $end];
+            }
         }
 
         $product = $this->model->selectAllList($where);
         $count = $this->model->getCount($where);
         $this->assign('product', $product);
         $this->assign('count', $count);
+        $this->assign('name', $name);
+        $this->assign('start', $start_time);
+        $this->assign('end', $end_time);
         return $this->fetch();
     }
 
