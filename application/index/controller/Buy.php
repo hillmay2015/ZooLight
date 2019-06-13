@@ -13,6 +13,7 @@ use app\common\traits\CategoryTraits;
 use app\common\model\Product as ProductModel;
 use wxpay;
 use app\common\traits\QrTraits;
+use alipay;
 
 class Buy extends Controller
 {
@@ -81,15 +82,31 @@ class Buy extends Controller
     public function pay()
     {
         $param = $this->request->param();
+        if ($param['pay'] == 2) {
+            $this->alipay($param);
+        } elseif ($param['pay'] == 3) {
+            $this->wxpay($param);
+            return $this->fetch();
+        }
 
+    }
+
+    public function alipay($param)
+    {
+        $alipay = new alipay\Alipay();
+        $data = ['out_trade_no' => $param['order_sn'],
+            'total' => $param['total_money'] / 100,
+            'subject' => $param['product_name'],
+        ];
+        $alipay->unifiedOrder($data);
+    }
+
+    public function wxpay($param)
+    {
         $wxpay = new wxpay\wxpay();
         $result = $wxpay->setData($param);
-
         $this->assign('url', $result['code_url']);
-        $this->createQr($result['code_url']);
-        $this->view->engine->layout(false);
-        $this->assign('data',$param);
-        return $this->fetch();
+        return $this->createQr($result['code_url']);
     }
 
     /**
