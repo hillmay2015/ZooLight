@@ -9,6 +9,9 @@ namespace app\admin\model;
 
 use think\Model;
 
+use app\common\traits\DbTraits;
+
 class Product extends Model
 {
+    use DbTraits;
 }

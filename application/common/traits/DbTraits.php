@@ -21,7 +21,7 @@ trait DbTraits
     public function selectAllList($where, $field = '*', $order = 'id desc')
     {
         $result = $this->where($where)->order($order)->select();
-        return $result;
+        return json_decode(json_encode($result),true);
     }
 
     /**
@@ -65,22 +65,22 @@ trait DbTraits
      * @return mixed
      * 更新数据
      */
-    public function update($where, $data)
-    {
-        $result = $this->where($where)->update($data);
-        return $result;
-    }
-
-    /**
-     * @param $where
-     * @return mixed
-     * 删除数据
-     */
-    public function delete($where)
-    {
-        $result = $this->where($where)->delete();
-        return $result;
-    }
+//    public function updateData($where, $data)
+//    {
+//        $result = $this->where($where)->update($data);
+//        return $result;
+//    }
+//
+//    /**
+//     * @param $where
+//     * @return mixed
+//     * 删除数据
+//     */
+//    public function deleteData($where)
+//    {
+//        $result = $this->where($where)->delete();
+//        return $result;
+//    }
 
     /**
      * @param $data

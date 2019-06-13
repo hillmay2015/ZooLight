@@ -48,8 +48,19 @@ class Product extends Admin
 
     public function productList()
     {
-        $product = $this->getList();
+        $param = $this->request->param();
+        $where = [];
+
+        if (isset($param['name']) && !empty($param['name'])) {
+            $name = $param['name'];
+            $where['name'] = $name;
+            $this->assign('name', $name);
+        }
+
+        $product = $this->model->selectAllList($where);
+        $count = $this->model->getCount($where);
         $this->assign('product', $product);
+        $this->assign('count', $count);
         return $this->fetch();
     }
 
