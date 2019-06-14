@@ -26,7 +26,7 @@
     </div>
 
     <div class="content">
-      <!--<form method="post" action="">-->
+      <form method="post" action="">
             <p class="pass-form-item">
                 <label class="pass-label">用户名</label>
                 <input type="text" name="user_name" id="user_name" class="pass-text-input" placeholder="请设置用户名">
@@ -42,20 +42,20 @@
             </p>
             <p class="pass-form-item">
                 <label class="pass-label">确认密码</label>
-                <input type="text"  id="confirm_password" class="pass-text-input" placeholder="请设置登录密码">
+                <input type="password"  id="confirm_password" class="pass-text-input" placeholder="请设置登录密码">
             </p>
             <p class="pass-form-item">
                 <label class="pass-label">验证码</label>
-                <input type="text" name="captcha" class="pass-text-input " id="captcha" placeholder="请输入验证码">
+                <input type="password" name="captcha" class="pass-text-input " id="captcha" placeholder="请输入验证码">
                 <?php $verify=url('verify');?>
                 <img src="{:url('register/verify')}" alt="captcha"  id="verify_img" title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
             </p>
 
             <p class="pass-form-item">
-                <input type="submit" value="注册" class="pass-button">
+                <input type="button" value="注册" class="pass-button">
             </p>
             <textarea id="rsa_public_key" style="display: none" rows="15" cols="65">{$rsa_public}</textarea>
-      <!--</form>-->
+      </form>
     </div>
 
     <div class="foot">
@@ -79,7 +79,7 @@
         $('#verify_img').attr('src', capsrc + Math.random());
     }
 
-    $('input[type="submit"]').click(function () {
+    $('input[type="button"]').click(function () {
 
 
         var crypt = new JSEncrypt();
