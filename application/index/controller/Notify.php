@@ -17,7 +17,13 @@ class Notify extends Controller
     //异步通知
     public function alipayNotify()
     {
-
+        $data = $this->request->param();
+        $result = $this->alipayReturn($data);
+        if ($result) {//支付成功
+            $this->redirect('');
+        } else {//支付失败
+            $this->redirect('');
+        }
     }
 
     //同步通知 返回商户自定义的页面 供商户自己校验一些参数和处理
@@ -58,7 +64,12 @@ class Notify extends Controller
         }
     }
 
-
+    /**
+     * @param $data
+     * @return bool
+     * @throws Exception
+     * 检查实际付款金额和 订单表中金额是否一致
+     */
     public function checkOrderAmount($data)
     {
         $orderModel = new Order();
