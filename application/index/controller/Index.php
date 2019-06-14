@@ -2,6 +2,7 @@
 namespace app\index\controller;
 
 use app\admin\model\Categroy;
+use think\App;
 use think\Controller;
 use app\common\traits\CategoryTraits;
 use app\common\traits\ProductTraits;
@@ -10,6 +11,11 @@ class Index extends Controller
 {
     use CategoryTraits;
     use ProductTraits;
+    public function __construct(App $app = null)
+    {
+        $this->assign('is_login', session('is_login') == 1 ? 1 : 0);
+        $this->assign('user_name', !empty(session('user')) ? session('user') : '');
+    }
 
     public function index()
     {
@@ -17,8 +23,6 @@ class Index extends Controller
         $type1 = $this->getCategory();
         $this->assign('type', $type1);
         $this->assign('product', $product);
-        $this->assign('is_login', session('is_login') == 1 ? 1 : 0);
-        $this->assign('user_name', !empty(session('user')) ? session('user') : '');
         return $this->fetch();
     }
 
