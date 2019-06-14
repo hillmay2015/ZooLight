@@ -65,11 +65,11 @@ trait DbTraits
      * @return mixed
      * 更新数据
      */
-    public function updateData($where, $data)
-    {
-        $result = $this->where($where)->update($data);
-        return $result;
-    }
+//    public function updateData($where, $data)
+//    {
+//        $result = $this->where($where)->update($data);
+//        return $result;
+//    }
 //
 //    /**
 //     * @param $where
