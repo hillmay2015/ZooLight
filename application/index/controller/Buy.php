@@ -87,11 +87,24 @@ class Buy extends Controller
         } elseif ($param['pay'] == 3) {
             $this->wxpay($param);
             $this->view->engine->layout(false);
+            $this->assign('data',$param);
             return $this->fetch();
         }
 
     }
 
+    /**
+     * 微信刷新重新支付
+     */
+    public function refreshPay()
+    {
+        $this->pay();
+    }
+
+    /**
+     * @param $param
+     * 支付宝支付
+     */
     public function alipay($param)
     {
         //支付时判断是移动端还是PC端
@@ -110,6 +123,10 @@ class Buy extends Controller
         $alipay->payRequest($data);
     }
 
+    /**
+     * @param $param
+     * 微信支付
+     */
     public function wxpay($param)
     {
         $wxpay = new wxpay\wxpay();
