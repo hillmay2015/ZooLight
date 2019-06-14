@@ -69,8 +69,7 @@ class Login extends Controller
 
         $res = $this->model->findOneList($data);
         if ($res) {
-            unset($res['password']);
-            session('user_name', $res['user_name']);
+            session('user_name', $data['user_name']);
             session('is_login', 1);//是否登录
             $this->success('登录成功', url('index/index'));
         } else {
