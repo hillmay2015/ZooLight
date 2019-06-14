@@ -69,9 +69,9 @@ class Login extends Controller
 
         $res = $this->model->findOneList($data);
         if ($res) {
-            $this->success('注册成功,请先登录', url('login/index'));
+            $this->success('登录成功', url('index/index'));
         } else {
-            $this->error('注册失败', url('index'));
+            $this->error('登录失败', url('index'));
         }
     }
 
