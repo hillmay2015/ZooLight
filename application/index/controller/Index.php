@@ -17,6 +17,8 @@ class Index extends Controller
         $type1 = $this->getCategory();
         $this->assign('type', $type1);
         $this->assign('product', $product);
+        $this->assign('is_login',session('is_login'));
+        $this->assign('user_name',session('user'));
         return $this->fetch();
     }
 

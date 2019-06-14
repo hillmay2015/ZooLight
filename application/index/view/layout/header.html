@@ -31,13 +31,18 @@
 
                 </div>
             </li>
+            {if($is_login)}
+            <li><a href="#">欢迎你,{$user_name}</a></li>
+            <li><a href="{:url('login/loginout')}">退出</a></li>
+            {else}
             <li><a href="{:url('register/index')}">注册</a></li>
             <li>|</li>
             <li><a href="{:url('login/index')}">登录</a></li>
+            {/if}
         </ul>
     </div>
 </div>
 
 <div class="search">
-    <a href="{:url('index/index')}"><img src="{$Think.IMAGE}logo.png" /></a>
+    <a href="{:url('index/index')}"><img src="{$Think.IMAGE}logo.png"/></a>
 </div>

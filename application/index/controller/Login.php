@@ -69,6 +69,9 @@ class Login extends Controller
 
         $res = $this->model->findOneList($data);
         if ($res) {
+            unset($res['password']);
+            session('user_name', $res['user_name']);
+            session('is_login', 1);//是否登录
             $this->success('登录成功', url('index/index'));
         } else {
             $this->error('登录失败', url('index'));
@@ -90,5 +93,15 @@ class Login extends Controller
             // 验证失败
             $this->error('验证码错误');
         }
+    }
+
+    /**
+     * 退出
+     */
+    public function loginout()
+    {
+        session('user', '');
+        session('islogin', '');
+        $this->redirect('index');
     }
 }
