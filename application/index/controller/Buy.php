@@ -102,7 +102,7 @@ class Buy extends Controller
         }
         $alipay = new alipay\Alipay($mode);
         $data = ['out_trade_no' => $param['order_sn'],
-            'total_amount' => $param['total_money'] / 100,
+            'total_amount' => $param['total_money'],
             'subject' => $param['product_name'],
             'body' => 'test'
         ];
