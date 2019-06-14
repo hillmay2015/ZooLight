@@ -86,6 +86,7 @@ class Buy extends Controller
             $this->alipay($param);
         } elseif ($param['pay'] == 3) {
             $this->wxpay($param);
+            $this->view->engine->layout(false);
             return $this->fetch();
         }
 
@@ -114,7 +115,7 @@ class Buy extends Controller
         $wxpay = new wxpay\wxpay();
         $result = $wxpay->setData($param);
         $this->assign('url', $result['code_url']);
-        return $this->createQr($result['code_url']);
+
     }
 
     /**
