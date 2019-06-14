@@ -6,8 +6,11 @@
  * 订单表
  */
 namespace app\common\model;
+
 use think\model;
+use app\common\traits\DbTraits;
 
-class Order extends model{
-
+class Order extends model
+{
+    use DbTraits;
 }
