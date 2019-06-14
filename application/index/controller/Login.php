@@ -102,6 +102,8 @@ class Login extends Controller
     {
         session('user', '');
         session('islogin', '');
+        cookie('user','');
+        cookie('islogin','');
         $this->redirect('index');
     }
 }
