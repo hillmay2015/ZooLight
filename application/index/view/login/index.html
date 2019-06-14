@@ -43,7 +43,7 @@
                             </p>
                             <p class="pass-form-item">
                                 <label class="pass-label">验证码</label>
-                                <input type="text" name="captcha" class="pass-text-input" id="captcha" placeholder="验证码">
+                                <input type="text" name="captcha" class="pass-text-input" id="captcha" placeholder="验证码" autocomplete="off">
                                 <?php $verify=url('verify');?>
                                 <img src="{:url('login/verify')}" alt="captcha" id="verify_img" title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
 
