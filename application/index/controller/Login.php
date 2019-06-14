@@ -99,10 +99,9 @@ class Login extends Controller
      */
     public function loginout()
     {
-        session('user', '');
+        session('user_name', '');
         session('islogin', '');
-        cookie('user','');
-        cookie('islogin','');
+
         $this->redirect('index');
     }
 }
