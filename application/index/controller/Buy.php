@@ -93,12 +93,20 @@ class Buy extends Controller
 
     public function alipay($param)
     {
-        $alipay = new alipay\Alipay();
+        //支付时判断是移动端还是PC端
+        $isMobile = isMobile();
+        if ($isMobile) {
+            $mode = 2;//WAP端支付
+        } else {
+            $mode = 1;//电脑端支付
+        }
+        $alipay = new alipay\Alipay($mode);
         $data = ['out_trade_no' => $param['order_sn'],
-            'total' => $param['total_money'] / 100,
+            'total_amount' => $param['total_money'] / 100,
             'subject' => $param['product_name'],
+            'body' => 'test'
         ];
-        $alipay->unifiedOrder($data);
+        $alipay->payRequest($data);
     }
 
     public function wxpay($param)

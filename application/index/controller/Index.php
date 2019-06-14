@@ -17,9 +17,6 @@ class Index extends Controller
         $type1 = $this->getCategory();
         $this->assign('type', $type1);
         $this->assign('product', $product);
-//        echo '<pre>';
-//        print_r($product);
-//        exit();
         return $this->fetch();
     }
 
