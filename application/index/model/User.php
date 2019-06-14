@@ -8,8 +8,9 @@
 namespace app\index\model;
 
 use think\Model;
+use app\common\traits\DbTraits;
 
 class User extends Model
 {
-
+    use DbTraits;
 }

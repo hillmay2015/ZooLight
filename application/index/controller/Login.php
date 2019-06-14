@@ -62,12 +62,12 @@ class Login extends Controller
         $data = $this->request->param();
         $rsa = new Rsa();
         $data['user_name'] = $rsa->privDecrypt($_POST['user_name']);//私钥解密
-        $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
+        $data['password'] = md5($rsa->privDecrypt($_POST['password']));//私钥解密
         $data['captcha'] = $_POST['captcha'];
         $this->check($data);
         array_pop($data);//删除最后一个元素
 
-        $res = $this->model->findOrFail($data);
+        $res = $this->model->findOneList($data);
         if ($res) {
             $this->success('注册成功,请先登录', url('login/index'));
         } else {

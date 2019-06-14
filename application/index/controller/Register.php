@@ -68,7 +68,7 @@ class Register extends Controller
         $param= $this->request->param();
         $rsa = new Rsa();
         $data['user_name'] = $rsa->privDecrypt($_POST['user_name']);//私钥解密
-        $data['password'] = $rsa->privDecrypt($_POST['password']);//私钥解密
+        $data['password'] = md5($rsa->privDecrypt($_POST['password']));//私钥解密
       //  $param['confirm_password']=$rsa->privDecrypt($_POST['confirm_password']);
         $data['email'] = $rsa->privDecrypt($_POST['email']);//私钥解密
         $data['captcha'] = $_POST['captcha'];
