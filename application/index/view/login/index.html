@@ -45,7 +45,7 @@
                                 <label class="pass-label">验证码</label>
                                 <input type="text" name="captcha" class="pass-text-input" id="captcha" placeholder="验证码">
                                 <?php $verify=url('verify');?>
-                                <img src="{:url('login/verify')}" alt="captcha"  title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
+                                <img src="{:url('login/verify')}" alt="captcha" id="verify_img" title="验证码" onclick="this.src='{$verify}?d='+Math.random();"/>
 
                             </p>
 
