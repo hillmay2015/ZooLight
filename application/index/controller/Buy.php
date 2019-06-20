@@ -25,6 +25,8 @@ class Buy extends Controller
     {
         parent::__construct();
         $this->model = new ProductModel();
+        $this->assign('is_login', session('is_login') == 1 ? 1 : 0);
+        $this->assign('user_name', !empty(session('user_name')) ? session('user_name') : '');
     }
 
     /**
