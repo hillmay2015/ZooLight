@@ -27,6 +27,9 @@ class Buy extends Controller
         $this->model = new ProductModel();
         $this->assign('is_login', session('is_login') == 1 ? 1 : 0);
         $this->assign('user_name', !empty(session('user_name')) ? session('user_name') : '');
+        if (session('is_login') != 1) {
+            $this->error('请先登录系统,再进行购买','login/index');
+        }
     }
 
     /**
@@ -89,7 +92,7 @@ class Buy extends Controller
         } elseif ($param['pay'] == 3) {
             $this->wxpay($param);
             $this->view->engine->layout(false);
-            $this->assign('data',$param);
+            $this->assign('data', $param);
             return $this->fetch();
         }
 
