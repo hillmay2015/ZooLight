@@ -180,7 +180,7 @@ if ( $done ) {
 }
 //2020.2.7
 
-$data=['state'=>'true','filePath'=>HTTP_SITE_NOPATH_HOST."/static/admin/lib/webuploder/0.1.5/server/".$uploadPath];
+$data=['state'=>'true','filePath'=>HTTP_SITE_NOPATH_HOST."/static/admin/lib/webuploader/0.1.5/server/".$uploadPath];
 die(json_encode($data));
 
 // Return Success JSON-RPC response
