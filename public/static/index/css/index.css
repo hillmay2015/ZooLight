@@ -442,3 +442,9 @@
     border-bottom: 1px solid #dfdfdf;
 }
 
+.foot {
+    width: 980px;
+    text-align: center;
+    color: #7a77c8;
+    margin: 80px auto 20px;
+}
