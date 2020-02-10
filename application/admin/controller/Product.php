@@ -12,6 +12,7 @@ class Product extends Admin
     use CategoryTraits;
     use ProductTraits;
     use FileUploadTraits;
+    protected $model;
 
     protected $rule = [
         'name' => 'require',
@@ -77,7 +78,7 @@ class Product extends Admin
             }
         }
 
-        $product = $this->model->selectAllList($where);
+        $product = $this->model->selectAllList($where,'','id asc');
         $count = $this->model->getCount($where);
         $this->assign('product', $product);
         $this->assign('count', $count);
@@ -103,8 +104,8 @@ class Product extends Admin
         unset($data['file']);//删除不需要的元素
         unset($data['editorValue']);
 
+        $res = $this->model->save($data);
 
-        $res = $this->model->insert($data);
         if ($res) {
             $this->success('添加产品成功');
         } else {
