@@ -18,10 +18,6 @@
 #!! is not recommended to be used in production environment as it is. Be sure to
 #!! revise it and customize to your needs.
 
-//定义站点域名
-define('SITE_HOST', $_SERVER['HTTP_HOST']);
-//带HTTP的域名
-define('HTTP_SITE_NOPATH_HOST', "http://" . SITE_HOST);
 
 // Make sure file is not cached (as it happens for example on iOS devices)
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
@@ -180,7 +176,7 @@ if ( $done ) {
 }
 //2020.2.7
 
-$data=['state'=>'true','filePath'=>HTTP_SITE_NOPATH_HOST."/static/admin/lib/webuploader/0.1.5/server/".$uploadPath];
+$data=['state'=>'true','filePath'=>$uploadPath];
 die(json_encode($data));
 
 // Return Success JSON-RPC response
