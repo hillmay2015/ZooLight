@@ -179,7 +179,7 @@ if ( $done ) {
     @fclose($out);
 }
 //2020.2.7
-echo HTTP_SITE_NOPATH_HOST;
+
 $data=['state'=>'true','filePath'=>HTTP_SITE_NOPATH_HOST."/static/admin/lib/webuploder/0.1.5/server/".$uploadPath];
 die(json_encode($data));
 

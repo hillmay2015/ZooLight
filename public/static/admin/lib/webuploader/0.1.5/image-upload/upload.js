@@ -215,7 +215,6 @@
             var $li = $( '<li id="' + file.id + '">' +
                     '<p class="title">' + file.name + '</p>' +
                     '<p class="imgWrap"></p>'+
-                    '<input type="hidden" value="" name="img[]" class="imgName-up-item">'+ //2020.2.7 方便xym存储图片路径
                     '<p class="progress"><span></span></p>' +
                     '</li>' ),
 
@@ -557,14 +556,6 @@
             } else if ( state === 'uploading' ) {
                 uploader.stop();
             }
-        });
-
-        // 文件上传成功，给item添加成功class, 用样式标记上传成功。 2020.2.6 xym
-        uploader.on('uploadSuccess', function(file, response) {
-            console.log(response);
-            var $li = $('#' + file.id);
-            console.log(response.filePath);
-            $li.find('.imgName-up-item').val(response.filePath);
         });
 
 
