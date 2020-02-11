@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>安装配置</title>
+</head>
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        background: #dce9f1;
+    }
+    .header-bar {
+        position: relative;
+        z-index: 150;
+        height: 60px;
+        background: #fafafa;
+        border-bottom: 1px solid #dfdfdf;
+        min-width: 1200px;
+    }
+
+    .header-inner {
+        width: 1200px;
+        margin: 0 auto;
+        height: 36px;
+        position: relative;
+        margin-left: 140px;
+    }
+
+    #wrapper {
+        width: 750px;
+        background: #f4fafb;
+        margin: 0px auto;
+        border: 1px solid #bbdde5;
+    }
+
+    .list {
+        text-align: left;
+        margin: 10px 50px;
+    }
+    h3 {
+        background: #41a5e1;
+        margin: 1px;
+        padding: 5px 15px;
+        color: #FFF;
+        text-align: left;
+    }
+    input.button {
+        padding: 2px 8px 0px;
+        margin: 2px 2px;
+        border: 1px solid #2D5082;
+        background: url(./button_bg.gif) repeat-x top center;
+    }
+    #install-btn {
+        margin-top: 1em;
+    }
+    .foot {
+        width: 980px;
+        text-align: center;
+        color: #7a77c8;
+        margin: 80px auto 20px;
+    }
+</style>
+<body>
+<div class="header-bar">
+    <div class="header-inner">
+        <a href=""><img src="./logo.png"/></a>
+    </div>
+</div>
+
+
+
+<div id="content">
+    <form id="js-setting" action="javascript:install();void 0;">
+
+        <table border="0" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+            <tbody><tr>
+                <td valign="top">
+                    <div id="wrapper">
+
+                        <h3>数据库帐号</h3>
+
+                        <table width="450" class="list">
+                            <tbody><tr>
+                                <td width="100" align="left">数据库主机：</td>
+                                <td align="left"><input type="text" name="js-db-host" value="localhost"></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">端口号：</td>
+                                <td align="left"><input type="text" name="js-db-port" value="3306"></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">用户名：</td>
+                                <td align="left"><input type="text" name="js-db-user" value="root"></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">密码：</td>
+                                <td align="left"><input type="password" name="js-db-pass" value=""></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">数据库名：</td>
+                                <td align="left"><input type="text" name="js-db-name" value="">
+                                    <select name="js-db-list">
+                                        <option>已有数据库</option>
+                                    </select>
+                                    <input type="button" name="js-go" class="button" value="搜">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">表前缀：</td>
+                                <td align="left"><input type="text" name="js-db-prefix" value="ecs_"><span class="comment">&nbsp; (建议您修改表前缀)</span></td>
+                            </tr>
+                            </tbody></table>
+
+                        <div id="js-monitor" style="display:none;text-align:left;position:absolute;top:45%;left:35%;width:300px;z-index:1000;border:1px solid #000;">
+                            <h3 id="js-monitor-title">安装程序监视器</h3>
+                            <div style="background:#fff;padding-bottom:20px;">
+                                <img id="js-monitor-loading" src="images/loading.gif"><br><br>
+                                <strong id="js-monitor-wait-please" style="color:blue;width:65%;float:left;margin-left:3px;"></strong>
+                                <span id="js-monitor-view-detail" style="color:gray;cursor:pointer;;float:right;margin-right:3px;">显示细节</span>
+                            </div>
+                            <div id="js-monitor-notice" name="js-monitor-notice" style="display:none;">
+                                <div id="js-notice" style="background:#fff;margin:0px;padding:5px 0 0 3px;height:100%;font:12px  Arial, Helvetica, sans-serif;line-height:130%; border-color: #BBDDE5 -moz-use-text-color #BBDDE5 #BBDDE5;border-style: dashed;border-width: 1px 0 0 0;"></div>
+                                <a id="js-bottom"></a>
+                            </div>
+                            <img id="js-monitor-close" src="./images/close.gif" style="position:absolute;top:10px;right:10px;cursor:pointer;">
+                        </div>
+                        <h3>管理员帐号</h3>
+                        <table width="450" class="list">
+                            <tbody><tr>
+                                <td width="100" align="left">管理员姓名：</td>
+                                <td align="left"><input type="text" name="js-admin-name" value=""></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">登录密码：</td>
+                                <td align="left"><input type="password" name="js-admin-password" value=""><span id="js-admin-password-result"></span></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">密码强度：</td>
+                                <td align="left"><table width="132" cellspacing="0" cellpadding="1" border="0">
+                                    <tbody><tr align="center">
+                                        <td width="33%" id="pwd_lower" style="border-bottom: 2px solid red;">弱</td>
+                                        <td width="33%" id="pwd_middle" style="border-bottom: 2px solid rgb(218, 218, 218);">中</td>
+                                        <td width="33%" id="pwd_high" style="border-bottom: 2px solid rgb(218, 218, 218);">强</td>
+                                    </tr>
+                                    </tbody></table></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">密码确认：</td>
+                                <td align="left"><input type="password" name="js-admin-password2" value=""><span id="js-admin-confirmpassword-result"></span></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">电子邮箱：</td>
+                                <td align="left"><input type="text" name="js-admin-email" value=""></td>
+                            </tr>
+                            </tbody></table>
+
+                        <h3>杂项</h3>
+                        <table width="450" class="list">
+                            <tbody><tr>
+                                <td width="100" align="left">选择语言包：</td>
+                                <td align="left"><input type="radio" class="p" name="js-system-lang" id="js-system-lang-zh_cn" value="zh_cn" checked="checked"><label for="js-system-lang-zh_cn">简体中文</label>
+                                    <input type="radio" name="js-system-lang" id="js-system-lang-zh_tw" value="zh_tw"><label for="js-system-lang-zh_tw">繁体中文</label>
+                                    <input type="radio" name="js-system-lang" id="js-system-lang-en_us" value="en_us"><label for="js-system-lang-en_us">English</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">设置时区：</td>
+                                <td align="left">
+                                    <select name="js-timezones">
+                                        <option value="UTC">UTC</option>
+                                        <option value="PRC">中华人民共和国</option>
+                                        <option value="Asia/Shanghai" selected="true">亚洲，中国，上海</option>
+                                        <option value="Asia/Taipei">亚洲，中国，台北</option>
+                                        <option value="Asia/Chongqing">亚洲，中国，重庆</option>
+                                        <option value="Asia/Harbin">亚洲，中国，哈尔滨</option>
+                                        <option value="Asia/Urumqi">亚洲，中国，乌鲁木齐</option>
+                                        <option value="Asia/Hong_Kong">亚洲，中国，香港</option>
+                                        <option value="Asia/Macau">亚洲，中国，澳门</option>
+                                        <option value="Asia/Singapore">亚洲，新加坡</option>
+                                        <option value="Asia/Seoul">亚洲，韩国，首尔</option>
+                                        <option value="Asia/Tokyo">亚洲，日本，东京</option>
+                                        <option value="Europe/Berlin">欧洲，德国，柏林</option>
+                                        <option value="Europe/Dublin">欧洲，德国，都柏林</option>
+                                        <option value="Europe/Paris">欧洲，法国，巴黎</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left">禁用验证码：</td>
+                                <td align="left"><input type="checkbox" class="p" name="js-disable-captcha"> <span class="comment"> (选择此项，进入后台、发表评论无需验证)</span></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="left" valign="top">预选商品类型：</td>
+                                <td align="left">
+                                    <input type="checkbox" class="p" name="js-goods-type[]" value="book" checked="true"> 书        <input type="checkbox" class="p" name="js-goods-type[]" value="music" checked="true"> 音乐        <input type="checkbox" class="p" name="js-goods-type[]" value="movie" checked="true"> 电影        <input type="checkbox" class="p" name="js-goods-type[]" value="mobile" checked="true"> 手机        <input type="checkbox" class="p" name="js-goods-type[]" value="notebook" checked="true"> 笔记本电脑    <br>    <input type="checkbox" class="p" name="js-goods-type[]" value="dc" checked="true"> 数码相机        <input type="checkbox" class="p" name="js-goods-type[]" value="dv" checked="true"> 数码摄像机        <input type="checkbox" class="p" name="js-goods-type[]" value="cosmetics" checked="true"> 化妆品        <input type="checkbox" class="p" name="js-goods-type[]" value="mobile2" checked="true"> 精品手机        </td>
+                            </tr>
+
+                            <tr>
+
+                                <td width="100" align="left">安装测试数据：</td>
+                                <td align="left"><input type="checkbox" class="p" name="js-install-demo"> <span class="comment">(选择此项，将默认全选预选商品类型)</span></td>
+                            </tr>
+
+                            <tr>
+                                <td align="center" colspan="2">
+                                </td>
+                            </tr>
+                            </tbody></table>
+
+                    </div>
+                </td>
+                <td width="227" valign="top" background="images/install-step3-zh_cn.gif">&nbsp;</td>
+            </tr>
+            <tr>
+                <td><div id="install-btn"><input type="button" id="js-pre-step" class="button" value="上一步：检测系统环境"> <input id="js-install-at-once" type="submit" class="button" value="立即安装"></div>
+                </td><td></td>
+            </tr>
+            </tbody></table>
+        <input name="userinterface" type="hidden" value="ecshop">
+        <input name="ucapi" type="hidden" value="">
+        <input name="ucfounderpw" type="hidden" value="">
+    </form>
+</div>
+
+<div class="foot">
+    <div>
+        <div>2019 ©Hillmay芝麻喵喵||蜀ICP备19009311号</div>
+    </div>
+</div>
+</body>
+</html>
