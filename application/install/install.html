@@ -11,21 +11,20 @@
         text-align: center;
         background: #dce9f1;
     }
-    .header-bar {
-        position: relative;
-        z-index: 150;
-        height: 60px;
-        background: #fafafa;
-        border-bottom: 1px solid #dfdfdf;
-        min-width: 1200px;
+
+    #logos-inside {
+        width: 1000px;
+        text-align: left;
+        margin: 0 auto;
+        background: #41a5e1;
     }
 
-    .header-inner {
-        width: 1200px;
-        margin: 0 auto;
-        height: 36px;
-        position: relative;
-        margin-left: 140px;
+    #lang-menu-inside {
+        line-height: 50px;
+        color: #515151;
+        text-align: right;
+        display: block;
+        padding-right: 100px;
     }
 
     #wrapper {
@@ -63,9 +62,19 @@
     }
 </style>
 <body>
-<div class="header-bar">
-    <div class="header-inner">
-        <a href=""><img src="./logo.png"/></a>
+<div id="logos">
+    <div id="logos-inside"> <img src="./logo.png" alt="ECSHOP"> </div>
+    <div id="lang-menu">
+        <div id="lang-menu-inside">
+            界面语言：简
+            <input type="radio" name="js-lang" id="js-zh_cn" class="p" checked="checked">
+            <label for="js-zh_cn">简体中文</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            繁
+            <input type="radio" name="js-lang" id="js-zh_tw" class="p">
+            <label for="js-zh_tw">繁体中文</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            EN
+            <input type="radio" name="js-lang" id="js-en_us" class="p">
+            <label for="js-en_us">English</label>  </div>
     </div>
 </div>
 
