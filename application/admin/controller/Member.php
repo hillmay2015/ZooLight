@@ -31,12 +31,7 @@ class Member extends Admin
 
     public function doAdd(){
         $data = $this->request->param();
-        print_r($data);
-        $this->check($data);
-        $data['seller_info'] = $data['editorValue'];
-        unset($data['file']);//删除不需要的元素
-        unset($data['editorValue']);
-
+        print_r($data);exit;
         $res = $this->model->save($data);
 
         if ($res) {
